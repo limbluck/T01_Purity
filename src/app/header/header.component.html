@@ -1,0 +1,142 @@
+<header class="header">
+    <!-- Sidebar button -->
+    <button class="button button_with-icon">
+        <mat-icon class="button__icon">menu</mat-icon>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navigation header__navigation">
+        <a class="navigation__link" routerLink="">Home</a>
+        <a class="navigation__link" routerLink="">Courses</a>
+        <a class="navigation__link" routerLink="">Blog</a>
+        <a class="navigation__link" routerLink="">About</a>
+    </nav>
+
+    <!-- Language -->
+    <button class="language header__language">
+        <p class="language__name">English</p>
+        <mat-icon class="language__expand">expand_more</mat-icon>
+        <div class="language__list">
+            <button class="language__list-item">English</button>
+            <button class="language__list-item">Русский</button>
+        </div>
+    </button>
+
+    <!-- Separator -->
+    <div class="header__separator"></div>
+
+    <!-- Serach -->
+    <button class="search">
+        <mat-icon class="search__icon">search</mat-icon>
+        <div class="search__searchbar-container">
+            <input class="search__searchbar" type="text" placeholder="Search">
+        </div>
+    </button>
+
+    <!-- Notifications (Authorized only) -->
+    <button class="notifications" *ngIf="authorized">
+        <mat-icon class="notifications__icon">notifications_none</mat-icon>
+        <div class="notifications__list">
+            <div class="notifications__header-container">
+                <p class="notifications__header">Notifications</p>
+                <button class="notifications__read-all button button_with-icon button_colors_reversed">
+                    <mat-icon class="button__icon button__icon_small">done_outline</mat-icon>
+                </button>
+                <button class="notifications__settings button button_with-icon button_colors_reversed">
+                    <mat-icon class="button__icon button__icon_small">settings</mat-icon>
+                </button>
+            </div>
+            <div class="notifications__list-container">
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+                <div class="notification">
+                    <mat-icon class="notification__icon">school</mat-icon>
+                    <div class="notification__container">
+                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="notification__timestamp">2 years 320 days ago</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="notifications__see-all-container">
+                <button class="notifications__see-all button button_max-size">See all</button>
+            </div>
+        </div>
+    </button>
+
+    <!-- Chat (Authorized only) -->
+    <button class="chat" *ngIf="authorized">
+        <mat-icon class="chat__icon">chat_bubble_outline</mat-icon>
+    </button>
+
+    <!-- Separator -->
+    <div class="header__separator"></div>
+
+    <!-- Log In (Unuthorized only) -->
+    <button class="button" *ngIf="!authorized">Log in</button>
+
+    <!-- Profile (Authorized only) -->
+    <button class="profile" *ngIf="authorized">
+        <img class="profile__icon" src="../../assets/header/profile-pic.jpg">
+        <p class="profile__name">Peter Evans</p>
+        <div class="profile__actions">
+            <button class="profile__action">Profile</button>
+            <button class="profile__action">Preferences</button>
+            <button class="profile__action">Log out</button>
+        </div>
+    </button>
+</header>
