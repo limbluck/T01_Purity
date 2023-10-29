@@ -39,6 +39,8 @@ body { // Fonts
     padding: 0.75rem 3.5ch;
     display: flex;
     align-items: center;
+    position: sticky;
+    top: 0;
     font-weight: 600;
     background-color: var(--1-backgroundColor);
     box-shadow: 0 0.4rem 1.2rem 0 var(--1-shadow);
