@@ -34,7 +34,7 @@
     </button>
 
     <!-- Notifications (Authorized only) -->
-    <button class="notifications" *ngIf="authorized">
+    <button class="notifications" *ngIf="AuthorizationService.authorized">
         <mat-icon class="notifications__icon">notifications_none</mat-icon>
         <div class="notifications__list">
             <div class="notifications__header-container">
@@ -119,7 +119,7 @@
     </button>
 
     <!-- Chat (Authorized only) -->
-    <button class="chat" *ngIf="authorized">
+    <button class="chat" *ngIf="AuthorizationService.authorized">
         <mat-icon class="chat__icon">chat_bubble_outline</mat-icon>
     </button>
 
@@ -127,16 +127,23 @@
     <div class="header__separator"></div>
 
     <!-- Log In (Unuthorized only) -->
-    <button class="button" *ngIf="!authorized">Log in</button>
+    <button class="button"
+        *ngIf="!AuthorizationService.authorized"
+        (click)="logIn()">
+        Log in
+    </button>
 
     <!-- Profile (Authorized only) -->
-    <button class="profile" *ngIf="authorized">
+    <button class="profile" *ngIf="AuthorizationService.authorized">
         <img class="profile__icon" src="../../assets/header/profile-pic.jpg">
         <p class="profile__name">Peter Evans</p>
         <div class="profile__actions">
             <button class="profile__action">Profile</button>
             <button class="profile__action">Preferences</button>
-            <button class="profile__action">Log out</button>
+            <button class="profile__action"
+                (click)="logOut()">
+                Log out
+            </button>
         </div>
     </button>
 </header>
