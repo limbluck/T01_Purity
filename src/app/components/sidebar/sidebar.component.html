@@ -7,21 +7,24 @@
         >
     </a>
 
-    <a class="sidebar__link">
+    <a class="sidebar__link"
+        [routerLink]="['/home']"
+        routerLinkActive="sidebar__link_active"
+        >
         <mat-icon class="sidebar__link-icon">home</mat-icon>
         Home
-    </a>
-
-    <!-- calendar - authorized -->
-    <a class="sidebar__link">
-        <mat-icon class="sidebar__link-icon">date_range</mat-icon>
-        Calendar
     </a>
 
     <!-- dashboard - aunhorized -->
     <a class="sidebar__link">
         <mat-icon class="sidebar__link-icon">dashboard</mat-icon>
         Dashboard
+    </a>
+
+    <!-- calendar - authorized -->
+    <a class="sidebar__link">
+        <mat-icon class="sidebar__link-icon">date_range</mat-icon>
+        Calendar
     </a>
 
     <!-- my files - authorized -->

@@ -25,8 +25,9 @@ body { // Fonts
     --1-color: rgb(94, 114, 228);
 
     --1-backgroundColor: rgb(255, 255, 255);
-    --2-backgroundColor: #f6f9fc;
+    --2-backgroundColor: rgb(246, 249, 252);
 
+    --0-text: rgb(0, 0, 0);
     --1-text: rgb(50, 50, 93);
     --2-text: rgb(82, 95, 127);
     --3-text: rgb(102, 102, 102);
@@ -38,16 +39,19 @@ body { // Fonts
 .sidebar-wrapper {
     height: 100%;
     width: 0;
+    padding: 0;
     position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
     transition: width 150ms;
+    transition: padding 50ms;
     overflow: hidden;
     background-color: var(--1-backgroundColor);
     box-shadow: 0 0.4rem 1.2rem 0 var(--1-shadow);
 
     &_show-sidebar {
+        padding: 0 0.5ch;
         width: 31ch;
     }
 }
@@ -61,7 +65,8 @@ body { // Fonts
     }
 
     &__link {
-        padding: 0.5rem 4ch;
+        padding: 0.75rem 4ch;
+        border-radius: 0.5rem;
         display: flex;
         font-size: 0.875rem;
         font-weight: 600;
@@ -69,8 +74,13 @@ body { // Fonts
         cursor: pointer;
         transition: color 150ms;
 
-        &:hover{
+        &:hover {
             color: var(--1-color);
+        }
+
+        &_active {
+            color: var(--0-text);
+            background-color: var(--2-backgroundColor);
         }
     }
 
@@ -91,7 +101,7 @@ body { // Fonts
     transition: margin-left 150ms;
 
     &_show-sidebar {
-        margin-left: 31ch;
+        margin-left: 32ch;
     }
 }
 
