@@ -1,3 +1,15 @@
-<app-header></app-header>
+<app-sidebar class="sidebar-wrapper"
+    [class.sidebar-wrapper_show-sidebar]="SidebarService.showSidebar"
+    >
+</app-sidebar>
 
-<router-outlet></router-outlet>
+<div class="page-wrapper"
+    [class.page-wrapper_show-sidebar]="SidebarService.showSidebar"
+    >
+
+    <app-header></app-header>
+
+    <router-outlet></router-outlet>
+
+</div>
+

@@ -35,6 +35,66 @@ body { // Fonts
     --1-shadow: rgb(237, 237, 237);
 }
 
+.sidebar-wrapper {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    transition: width 150ms;
+    overflow: hidden;
+    background-color: var(--1-backgroundColor);
+    box-shadow: 0 0.4rem 1.2rem 0 var(--1-shadow);
+
+    &_show-sidebar {
+        width: 31ch;
+    }
+}
+
+.sidebar {
+    
+    &__logo {
+        padding: 0.75rem 3ch;
+        margin: 0 0 1.25rem 0; 
+        width: 100%;
+    }
+
+    &__link {
+        padding: 0.5rem 4ch;
+        display: flex;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--3-text);
+        cursor: pointer;
+        transition: color 150ms;
+
+        &:hover{
+            color: var(--1-color);
+        }
+    }
+
+    &__link-icon {
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+        margin: 0 0.5ch 0 0; 
+        font-size: 1.25rem !important;
+    }
+}
+
+.logo{
+    display: block;
+}
+
+.page-wrapper{
+    z-index: 1;
+    transition: margin-left 150ms;
+
+    &_show-sidebar {
+        margin-left: 31ch;
+    }
+}
+
 .header {
     padding: 0.75rem 3.5ch;
     display: flex;

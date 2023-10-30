@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 
+import { SidebarService } from 'src/app/services/sidebar.service';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -8,14 +9,22 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class HeaderComponent {
 
-  AuthorizationService: AuthorizationService = inject(AuthorizationService);
-  
-  logIn(){
-    this.AuthorizationService.logIn();
-  };
+  // Sidebar
+    SidebarService: SidebarService = inject(SidebarService);
 
-  logOut(){
-    this.AuthorizationService.logOut();
-  };
+    toggleSidebar(){
+      this.SidebarService.toggleSidebar();
+    }
+
+  // Authorization
+    AuthorizationService: AuthorizationService = inject(AuthorizationService);
+    
+    logIn(){
+      this.AuthorizationService.logIn();
+    };
+
+    logOut(){
+      this.AuthorizationService.logOut();
+    };
 
 }
