@@ -37,7 +37,9 @@
     </button>
 
     <!-- Notifications (Authorized only) -->
-    <button class="notifications" *ngIf="AuthorizationService.authorized">
+    <button class="notifications"
+        *ngIf="AuthorizationService.authorized"
+        >
         <mat-icon class="notifications__icon">notifications_none</mat-icon>
         <div class="notifications__list">
             <div class="notifications__header-container">
@@ -122,7 +124,9 @@
     </button>
 
     <!-- Chat (Authorized only) -->
-    <button class="chat" *ngIf="AuthorizationService.authorized">
+    <button class="chat" 
+        *ngIf="AuthorizationService.authorized"
+        >
         <mat-icon class="chat__icon">chat_bubble_outline</mat-icon>
     </button>
 
