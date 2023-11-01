@@ -1,1 +1,47 @@
-<p>home works!</p>
+<h1 class="hidden-h1">Learn with Purtiy</h1>
+
+<div class="banner"
+    [ngSwitch]="currentBanner"
+    >
+    <div class="banner__next banner__next_left">
+        <mat-icon class="banner__next-icon">keyboard_arrow_left</mat-icon>
+    </div>
+    <div class="banner__next banner__next_right">
+        <mat-icon class="banner__next-icon">keyboard_arrow_right</mat-icon>
+    </div>
+    
+
+    <div class="banner__wrapper"
+    *ngSwitchCase="1"
+    >
+        <div class="banner__container">
+            <h2 class="banner__header">Learn Without Limits</h2>
+            <p class="banner__text">Flexible schedule, mentorship, interactive lessons, access to the library. There are no borders of learning!</p>
+            <button class="button button_transparent button_outline">Find Out More</button>
+        </div>
+        <img class="banner__background" src="../../../../assets/pages/home/banner-image-1.jpg">
+    </div>
+
+    <div class="banner__wrapper"
+    *ngSwitchCase="2"
+    >
+        <div class="banner__container  banner__container_3of10">
+            <h2 class="banner__header">Simply The Best Way To Learn</h2>
+            <p class="banner__text banner__text_align-left">Purity offers you broad resources and opportunities to learn from any place at your own pace!</p>
+            <button class="button button_transparent button_outline">Get Started</button>
+        </div>
+        <img class="banner__background" src="../../../../assets/pages/home/banner-image-2.jpg">
+    </div>
+
+    <div class="banner__wrapper"
+    *ngSwitchCase="3"
+    >
+        <div class="banner__container">
+            <h2 class="banner__header">Expirience Of Experts</h2>
+            <p class="banner__text">Purity provides access to invaluable knowledge from experienced educators!</p>
+            <button class="button button_transparent button_outline">Gain Acces</button>
+        </div>
+        <img class="banner__background" src="../../../../assets/pages/home/banner-image-3.jpg">
+    </div>
+</div>
+

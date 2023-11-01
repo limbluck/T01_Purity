@@ -14,13 +14,11 @@ export class AuthorizationService implements Authorization{
 
   authorized: boolean = false;
 
-  constructor() {}
-
-  logIn(){
+  logIn(): void {
     this.authorized = true;
   };
 
-  logOut(){
+  logOut(): void {
     this.authorized = false;
   };
 }

@@ -11,11 +11,11 @@ export class SidebarComponent {
   // Authorization
     AuthorizationService: AuthorizationService = inject(AuthorizationService);
 
-    logIn(){
+    logIn(): void {
       this.AuthorizationService.logIn();
     };
 
-    logOut(){
+    logOut(): void {
       this.AuthorizationService.logOut();
     };
 

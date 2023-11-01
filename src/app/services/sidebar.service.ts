@@ -12,7 +12,7 @@ export class SidebarService implements Sidebar {
 
   showSidebar: boolean = false;
 
-  toggleSidebar(){
+  toggleSidebar(): void {
     this.showSidebar = !this.showSidebar
   };
 

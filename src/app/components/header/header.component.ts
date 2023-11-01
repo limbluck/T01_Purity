@@ -12,18 +12,18 @@ export class HeaderComponent {
   // Sidebar
     SidebarService: SidebarService = inject(SidebarService);
 
-    toggleSidebar(){
+    toggleSidebar(): void {
       this.SidebarService.toggleSidebar();
     }
 
   // Authorization
     AuthorizationService: AuthorizationService = inject(AuthorizationService);
     
-    logIn(){
+    logIn(): void {
       this.AuthorizationService.logIn();
     };
 
-    logOut(){
+    logOut(): void {
       this.AuthorizationService.logOut();
     };
 
