@@ -3,10 +3,14 @@
 <div class="banner"
     [ngSwitch]="currentBanner"
     >
-    <div class="banner__next banner__next_left">
+    <div class="banner__next banner__next_left"
+        (click)="perviousBanner()"
+        >
         <mat-icon class="banner__next-icon">keyboard_arrow_left</mat-icon>
     </div>
-    <div class="banner__next banner__next_right">
+    <div class="banner__next banner__next_right"
+        (click)="nextBanner()"
+        >
         <mat-icon class="banner__next-icon">keyboard_arrow_right</mat-icon>
     </div>
     
