@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -20,6 +21,7 @@ import { Error404Component } from './components/pages/error404/error404.componen
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatIconModule
   ],
