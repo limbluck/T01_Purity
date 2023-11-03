@@ -242,8 +242,14 @@ body { // Fonts
         margin: 0 1.75ch;
         width: 33ch;
         padding: 1.5rem;
+        border-radius: 0.5rem;
         background-color: white;
-    
+        box-shadow: 0 0.4rem 1.2rem 0 var(--1-shadow);
+        transition: transform 150ms;
+        &:hover {
+            transform: translate(0, -5%);
+        }
+
         &-color1 {
             color: var(--1-color);
     
