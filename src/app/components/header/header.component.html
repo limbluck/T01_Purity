@@ -1,27 +1,30 @@
 <header class="header">
 
     <!-- Sidebar button -->
-    <button class="button button_with-icon"
+    <button 
+        class="button
+            button-withIcon
+        "
         (click)="toggleSidebar()"
-        >
+    >
         <mat-icon class="button__icon">menu</mat-icon>
     </button>
 
     <!-- Navigation -->
-    <nav class="navigation header__navigation">
-        <a class="navigation__link" routerLink="">Home</a>
-        <a class="navigation__link" routerLink="">Courses</a>
-        <a class="navigation__link" routerLink="">Blog</a>
-        <a class="navigation__link" routerLink="">About</a>
+    <nav class="header__navigation">
+        <a class="header__navigation--link" routerLink="/home">Home</a>
+        <a class="header__navigation--link" routerLink="">Courses</a>
+        <a class="header__navigation--link" routerLink="">Blog</a>
+        <a class="header__navigation--link" routerLink="">About</a>
     </nav>
 
     <!-- Language -->
-    <button class="language header__language">
-        <p class="language__name">English</p>
-        <mat-icon class="language__expand">expand_more</mat-icon>
-        <div class="language__list">
-            <button class="language__list-item">English</button>
-            <button class="language__list-item">Русский</button>
+    <button class="header__language">
+        <p class="header__language--name">English</p>
+        <mat-icon class="header__language--expand">expand_more</mat-icon>
+        <div class="header__language--list">
+            <button class="header__language--item">English</button>
+            <button class="header__language--item">Русский</button>
         </div>
     </button>
 
@@ -29,105 +32,111 @@
     <div class="header__separator"></div>
 
     <!-- Serach -->
-    <button class="search">
-        <mat-icon class="search__icon">search</mat-icon>
-        <div class="search__searchbar-container">
-            <input class="search__searchbar" type="text" placeholder="Search">
+    <button class="header__search">
+        <mat-icon class="header__search--icon">search</mat-icon>
+        <div class="header__search--container">
+            <input class="header__search--bar" type="text" placeholder="Search">
         </div>
     </button>
 
     <!-- Notifications (Authorized only) -->
-    <button class="notifications"
+    <button class="header__notifications"
         *ngIf="AuthorizationService.authorized"
         >
-        <mat-icon class="notifications__icon">notifications_none</mat-icon>
-        <div class="notifications__list">
-            <div class="notifications__header-container">
-                <p class="notifications__header">Notifications</p>
-                <button class="notifications__button">
-                    <mat-icon class="notifications__button-icon">done_outline</mat-icon>
+        <mat-icon class="header__notifications--icon">notifications_none</mat-icon>
+        <div class="header__notifications--container">
+            <div class="header__notifications--topPanel">
+                <p class="header__notifications--header">Notifications</p>
+                <button class="header__notifications--button">
+                    <mat-icon class="header__notifications--button--icon">done_outline</mat-icon>
                 </button>
-                <button class="notifications__button">
-                    <mat-icon class="notifications__button-icon">settings</mat-icon>
+                <button class="header__notifications--button">
+                    <mat-icon class="header__notifications--button--icon">settings</mat-icon>
                 </button>
             </div>
-            <div class="notifications__list-container">
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+            <div class="header__notifications--list">
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
-                <div class="notification">
-                    <mat-icon class="notification__icon">star_border</mat-icon>
-                    <div class="notification__container">
-                        <a class="notification__message" routerLink="">Congratulations! You just earned a badge!</a>
-                        <p class="notification__timestamp">2 years 320 days ago</p>
+                <div class="header__notification">
+                    <mat-icon class="header__notification--icon">star_border</mat-icon>
+                    <div class="header__notification--container">
+                        <a class="header__notification--message" routerLink="">Congratulations! You just earned a badge!</a>
+                        <p class="header__notification--timestamp">2 years 320 days ago</p>
                     </div>
                 </div>
 
             </div>
-            <div class="notifications__see-all-container">
-                <button class="notifications__see-all button button_max-size">See all</button>
+            <div class="header__notifications--bottomPanel">
+                <button 
+                    class="
+                        button
+                        header__notifications--seeAll
+                    ">
+                    See all
+                </button>
             </div>
         </div>
     </button>
 
     <!-- Chat (Authorized only) -->
-    <button class="chat" 
+    <button class="header__chat" 
         *ngIf="AuthorizationService.authorized"
         >
-        <mat-icon class="chat__icon">chat_bubble_outline</mat-icon>
+        <mat-icon class="header__chat--icon">chat_bubble_outline</mat-icon>
     </button>
 
     <!-- Separator -->
@@ -136,18 +145,21 @@
     <!-- Log In (Unuthorized only) -->
     <button class="button"
         *ngIf="!AuthorizationService.authorized"
-        (click)="logIn()">
+        (click)="logIn()"
+    >
         Log in
     </button>
 
     <!-- Profile (Authorized only) -->
-    <button class="profile" *ngIf="AuthorizationService.authorized">
-        <img class="profile__icon" src="../../assets/header/profile-pic.jpg">
-        <p class="profile__name">Peter Evans</p>
-        <div class="profile__actions">
-            <button class="profile__action">Profile</button>
-            <button class="profile__action">Preferences</button>
-            <button class="profile__action"
+    <button class="header__profile"
+        *ngIf="AuthorizationService.authorized"
+    >
+        <img class="header__profile--icon" src="../../assets/header/profile-pic.jpg">
+        <p class="header__profile--name">Peter Evans</p>
+        <div class="header__profile--actions">
+            <button class="header__profile--action">Profile</button>
+            <button class="header__profile--action">Preferences</button>
+            <button class="header__profile--action"
                 (click)="logOut()">
                 Log out
             </button>

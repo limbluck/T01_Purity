@@ -1,57 +1,80 @@
 <h1 class="hidden-h1">Learn with Purtiy</h1>
 
 <div class="banner">
-    <div class="banner__next banner__next_left"
+    <div class="banner__next banner__next-left"
         (click)="perviousBanner()"
     >
-        <mat-icon class="banner__next-icon">keyboard_arrow_left</mat-icon>
+        <mat-icon class="banner__next--icon">keyboard_arrow_left</mat-icon>
     </div>
-    <div class="banner__next banner__next_right"
+    <div class="banner__next banner__next-right"
         (click)="nextBanner()"
     >
-        <mat-icon class="banner__next-icon">keyboard_arrow_right</mat-icon>
+        <mat-icon class="banner__next--icon">keyboard_arrow_right</mat-icon>
     </div>
     
 
-    <div class="banner__wrapper"
+    <div class="banner__item"
         [@bannerWrapperChange]="firstBannerState"
     >
-        <div class="banner__container"
+        <div class="banner__textContainer"
             [@bannerContainerChange]="firstBannerState"
         >
             <h2 class="banner__header">Learn Without Limits</h2>
             <p class="banner__text">Flexible schedule, mentorship, interactive lessons, access to the library. With Purity there are no borders of learning!</p>
-            <button class="button button_transparent button_outline">Find Out More</button>
+            <button 
+                class="
+                    button
+                    button-transparent
+                    button-outline
+                ">
+                Find Out More
+            </button>
         </div>
         <img class="banner__background" src="../../../../assets/pages/home/banner-image-1.jpg"
             [@bannerBackgroundChange]="firstBannerState"
         >
     </div>
 
-    <div class="banner__wrapper"
+    <div class="banner__item"
         [@bannerWrapperChange]="secondBannerState"
     >
-        <div class="banner__container banner__container_3of10"
+        <div 
+            class="
+                banner__textContainer
+                banner__textContainer-3of10
+            "
             [@bannerContainerChange3of10]="secondBannerState"
         >
             <h2 class="banner__header">Simply The Best Way To Learn</h2>
-            <p class="banner__text banner__text_align-left">Purity offers you broad resources and opportunities to learn from any place at your own pace!</p>
-            <button class="button button_transparent button_outline">Get Started</button>
+            <p class="banner__text banner__text-alignLeft">Purity offers you broad resources and opportunities to learn from any place at your own pace!</p>
+            <button 
+                class="
+                    button
+                    button-transparent
+                    button-outline
+                ">Get Started
+            </button>
         </div>
         <img class="banner__background" src="../../../../assets/pages/home/banner-image-2.jpg"
             [@bannerBackgroundChange]="secondBannerState"
         >
     </div>
 
-    <div class="banner__wrapper"
+    <div class="banner__item"
         [@bannerWrapperChange]="thirdBannerState"
     >
-        <div class="banner__container"
+        <div class="banner__textContainer"
             [@bannerContainerChange]="thirdBannerState"
         >
             <h2 class="banner__header">Expirience Of Experts</h2>
             <p class="banner__text">Purity provides access to invaluable knowledge from experienced educators!</p>
-            <button class="button button_transparent button_outline">Gain XP</button>
+            <button 
+                class="
+                    button
+                    button-transparent
+                    button-outline
+                ">Gain XP
+            </button>
         </div>
         <img class="banner__background" src="../../../../assets/pages/home/banner-image-3.jpg"
             [@bannerBackgroundChange]="thirdBannerState"
@@ -67,40 +90,58 @@
     <p class="cards__text">Sed hendrerit quam sed ante euismod posu. Mauris ut elementum ante. Vestibuel suscipit convallis purus mattis magna sapien, euismod convallis sagittis quis euismod posu.</p>
 
     <div class="cards__container">
-        <div class="card card_color1">
-            <div class="card__icon-container">
-                <mat-icon class="card__icon">done_outline</mat-icon>
+        <div class="cards__card cards__card-color1">
+            <div class="cards__card--iconContainer">
+                <mat-icon class="cards__card--icon">done_outline</mat-icon>
             </div>
 
-            <h3 class="card__header">DOWNLOAD PURITY</h3>
+            <h3 class="cards__card--header">DOWNLOAD PURITY</h3>
 
-            <p class="card__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
+            <p class="cards__card--text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
 
-            <div class="card__button button">Learn More</div>
+            <div 
+                class="
+                    cards__card--button
+                    cards__card--button-color1
+                    button
+                "
+            >Learn More</div>
         </div>
 
-        <div class="card card_color2">
-            <div class="card__icon-container">
-                <mat-icon class="card__icon">done_outline</mat-icon>
+        <div class="cards__card cards__card-color2">
+            <div class="cards__card--iconContainer">
+                <mat-icon class="cards__card--icon">done_outline</mat-icon>
             </div>
 
-            <h3 class="card__header">BUILD SOMETHING</h3>
+            <h3 class="cards__card--header">BUILD SOMETHING</h3>
 
-            <p class="card__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
+            <p class="cards__card--text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
 
-            <div class="card__button button button_color2">Learn More</div>
+            <div 
+                class="
+                    cards__card--button
+                    cards__card--button-color2
+                    button
+                "
+            >Learn More</div>
         </div>
 
-        <div class="card card_color3">
-            <div class="card__icon-container">
-                <mat-icon class="card__icon">done_outline</mat-icon>
+        <div class="cards__card cards__card-color3">
+            <div class="cards__card--iconContainer">
+                <mat-icon class="cards__card--icon">done_outline</mat-icon>
             </div>
 
-            <h3 class="card__header">PREPARE LUNCH</h3>
+            <h3 class="cards__card--header">PREPARE LUNCH</h3>
 
-            <p class="card__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
+            <p class="cards__card--text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis.</p>
 
-            <div class="card__button button button_color3">Learn More</div>
+            <div 
+                class="
+                    cards__card--button
+                    cards__card--button-color3
+                    button
+                "
+            >Learn More</div>
         </div>
     </div>
 
