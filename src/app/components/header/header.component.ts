@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { SidebarService } from 'src/app/services/sidebar.service';
+import { SidebarService } from 'src/app/components/sidebar/sidebar.service';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
