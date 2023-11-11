@@ -160,41 +160,4 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  currentBanner: number = 1;
-
-  firstBannerState: string = 'show';
-  secondBannerState: string = 'hide';
-  thirdBannerState: string = 'hide';
-  
-  nextBanner(){
-    this.currentBanner += 1;
-    if (this.currentBanner > 3) {this.currentBanner = 1};
-    this.switchBanners(this.currentBanner);
-  };
-
-  perviousBanner(){
-    this.currentBanner -= 1;
-    if (this.currentBanner <1 ) {this.currentBanner = 3};
-    this.switchBanners(this.currentBanner);
-  };
-
-  switchBanners(currentBanner: number) {
-    switch (currentBanner) {
-      case 1:
-        this.firstBannerState = 'show';
-        this.secondBannerState = 'hide';
-        this.thirdBannerState = 'hide';
-        break;
-      case 2:
-        this.firstBannerState = 'hide';
-        this.secondBannerState = 'show';
-        this.thirdBannerState = 'hide';
-        break;
-      case 3:
-        this.firstBannerState = 'hide';
-        this.secondBannerState = 'hide';
-        this.thirdBannerState = 'show';
-        break;
-    };
-  };
 }
