@@ -1,6 +1,6 @@
 # T01_Purity
 
-Angular training project #1
+Frontend training project #1
 
 Started - 10/24/2023
 
