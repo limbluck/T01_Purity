@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 
-import { SidebarService } from 'src/app/components/sidebar/sidebar.service';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -8,13 +7,6 @@ import { AuthorizationService } from '../../services/authorization.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-
-  // Sidebar
-    SidebarService: SidebarService = inject(SidebarService);
-
-    toggleSidebar(): void {
-      this.SidebarService.toggleSidebar();
-    }
 
   // Authorization
     AuthorizationService: AuthorizationService = inject(AuthorizationService);

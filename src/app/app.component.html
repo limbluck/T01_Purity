@@ -1,16 +1,1 @@
-<app-sidebar class="_sidebar-wrapper"
-    [class._sidebar-wrapper_show-sidebar]="SidebarService.showSidebar"
-    >
-</app-sidebar>
-
-<div class="_page-wrapper"
-    [class._page-wrapper_show-sidebar]="SidebarService.showSidebar"
-    style="height: 3000px;"
-    >
-
-    <app-header></app-header>
-
-    <router-outlet></router-outlet>
-
-</div>
-
+<router-outlet></router-outlet>
