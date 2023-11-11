@@ -1,9 +1,200 @@
+// Zeroing
+* {
+    font-family: inherit;
+    border: none;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+$color_transparent: rgba(0, 0, 0, 0);
+$color_transparent-dark: rgba(0, 0, 0, 0.5);
+
+$color_base-1: #0B1526; // 11,  21,  38 //* blue
+$color_base-2: #172B4D; // 23,  43,  77
+$color_base-3: #324CDD; // 50,  76,  221
+$color_base-4: #5E72E4; // 94,  114, 228
+$color_base-5: #FFFFFF; // 255, 255, 255 //* white
+
+$color_other-1: #FB6340; // 251, 99,  64
+$color_other-2: #2DCE89; // 45,  206, 137
+
+$color_background-1: #484851; // 72,  72,  81  //* blue
+$color_background-2: #525F7F; // 82,  95,  127
+$color_background-3: #D2E3EE; // 210, 227, 238
+$color_background-4: #DEE2E6; // 222, 226, 230
+$color_background-5: #F6F9FC; // 246, 249, 252 
+$color_background-6: #FFFFFF; // 255, 255, 255 //* white
+
+$color_text-1: #191919; // 25,  25,  25 //* black
+$color_text-2: #666666; // 102, 102, 102
+$color_text-3: #808080; // 128, 128, 128
+$color_text-4: #212529; // 33,  37,  41 //* dark blue
+$color_text-5: #32325D; // 50,  50,  93
+$color_text-6: #67748A; // 103, 116, 138
+$color_text-7: #233DD3; // 35,  61,  211 //* blue
+$color_text-8: #5E72E4; // 94,  114, 228
+$color_text-9: #FFFFFF; // 255, 255, 255 //* white
+
+$shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px 0px;
+
+$border-radius: 0.4em;
+
+$transition-delay: 150ms;
+
+
 body { // Fonts
     font-family: 'Open Sans', sans-serif;
+
+    //! DELETE
+    height: 3000px
 }
 
-:root { // Color variables
-
-
+.wrapper {
+    max-width: 1900px;
+    margin: auto;
+    display: block;
 }
 
+.button {
+    height: 2.75em;
+    padding: 0 0.625em;
+    font-weight: 600;
+    white-space: nowrap;
+    color: $color_background-6;
+    background-color: $color_base-4;
+    border-radius: $border-radius;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform $transition-delay, background-color $transition-delay;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:active {
+        background-color: $color_base-3;
+    }
+
+    &--small {
+        font-size: 0.75rem;
+        height: 2.5em;
+    }
+
+    &--content-icon {
+        padding: 0;
+        width: 2.75em;
+    }
+
+    &--small.button--content-icon {
+        width: 2.5em;
+    }
+
+    &--content-with-image {
+        display: flex;
+        align-items: center;
+    }
+
+    &--color-transparent {
+        color: $color_text-2;
+        background-color: $color_transparent;
+        transition: background-color $transition-delay;
+        &:hover {
+            background-color: $color_background-5;
+            transform: scale(1);
+        }
+        &:active {
+            background-color: $color_background-5;
+        }
+    }
+
+    &__icon {
+        display: block;
+        margin: auto;
+        width: 1em;
+        height: 1em;
+    }
+
+    &__image {
+        height:2.187rem;
+        width: 2.187rem;
+        border-radius: 50%;
+    }
+
+    &__text {
+        margin-left: 0.625em;
+    }
+}
+
+.header {
+    height: 4.5em;
+    padding-left: clamp(0.5em, 2vw, 1.875em);
+    padding-right:clamp(0.5em, 2vw, 1.875em);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-color: $color_background-6;
+    box-shadow: $shadow;
+
+    &__link {
+        margin: 0 0 0 2.5em;
+        font-weight: 600;
+        color: $color_text-2;
+        cursor: pointer;
+        transition: color $transition-delay;
+        &:hover{
+            color: $color_base-4;
+        }
+    }
+
+
+    &__language {
+        margin-left: auto;
+    }
+
+    &__separator {
+        width: 2px;
+        height: 1.25em;
+        margin: 0 1em;
+        background-color: $color_background-4;
+        border-radius: $border-radius;
+    }
+
+    &__icon {
+        opacity: 60%;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .header {
+
+        &__link {
+            display: none;
+        }
+    
+        &__profile .button__text {
+            display: none;
+        }
+    }
+  }
+
+@media screen and (max-width: 430px) {
+    .header {
+
+        &__link {
+            display: none;
+        }
+
+        &__language {
+            display: none;
+        }
+
+        &__separator {
+            display: none;
+        }
+
+        &__search {
+            margin-left: auto;
+        }
+    }
+  }

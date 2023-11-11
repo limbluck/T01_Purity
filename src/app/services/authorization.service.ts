@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
 interface Authorization {
-  authorized: boolean;
-  logIn(): void;
-  logOut(): void;
+  // HeaderComponent
+    authorized: boolean;
+    logIn(): void;
+    logOut(): void;
 }
 
 @Injectable({
