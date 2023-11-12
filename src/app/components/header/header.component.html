@@ -9,8 +9,19 @@
     <a class="header__link">Blogs</a>
     <a class="header__link">About</a>
     
-    <button class="button button--color-transparent header__language">
+    <button class="header__language button button--color-transparent"
+        #header__language
+        (click)="toggleLanguageDropdown()"
+    >
         English
+        <div class="dropdown"
+            *ngIf="showLanguageDropdown"
+            #header__languageDropdown
+            (click)="$event.stopPropagation()"
+        >
+            <a class="dropdown__link">English</a>
+            <a class="dropdown__link">Русский</a>
+        </div>
     </button>
 
     <div class="header__separator"></div>
@@ -18,22 +29,51 @@
     <button class="header__search button button--content-icon button--color-transparent">
         <img class="button__icon header__icon" src="../../../assets/icons/search.svg" alt="">
     </button>
-    <button class="button button--content-icon button--color-transparent">
+    <button class="button button--content-icon button--color-transparent"
+        *ngIf="AuthorizationService.authorized"
+    >
         <img class="button__icon header__icon" src="../../../assets/icons/notification.svg" alt="">
     </button>
-    <button class="button button--content-icon button--color-transparent">
+    <button class="button button--content-icon button--color-transparent"
+        *ngIf="AuthorizationService.authorized"
+    >
         <img class="button__icon header__icon" src="../../../assets/icons/chat.svg" alt="">
     </button>
 
     <div class="header__separator"></div>
 
-    <button class="header__profile button button--content-with-image button--color-transparent ">
-        <img class="button__image" src="../../../assets/profile-pic.jpg" alt="">
-        <span class="button__text">Peter Evans</span>
+    <button class="header__logIn button button--small"
+        *ngIf="!AuthorizationService.authorized"
+        (click)="logIn()"
+    >
+        Log in
     </button>
 
-    <!-- <button class="button button--small">
-        Log in
-    </button> -->
+    <button class="header__profile button button--content-with-image button--color-transparent"
+        ngModel
+        #header__profile
+        (click)="toggleProfileDropdown()"
+        *ngIf="AuthorizationService.authorized"
+    >
+        <img class="button__image" src="../../../assets/profile-pic.jpg" alt="">
+        <span class="button__text">Peter Evans</span>
+        <div class="dropdown"
+            #header__profileDropdown
+            *ngIf="showProfileDropdown"
+            (click)="$event.stopPropagation()"
+        >
+            <a class="dropdown__link">Profile</a>
+            <div class="dropdown__separator"></div>
+            <a class="dropdown__link">Grades</a>
+            <a class="dropdown__link">Calendar</a>
+            <a class="dropdown__link">Files</a>
+            <div class="dropdown__separator"></div>
+            <a class="dropdown__link"
+                (click)="logOut()"
+            >Log out</a>
+        </div>
+    </button>
+
+    
 
 </header>
