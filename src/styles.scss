@@ -43,19 +43,27 @@ $shadow-2: 0px 1px 20px rgba(0, 0, 0, 0.1);
 $border-radius: 0.4em;
 
 $transition-delay: 150ms;
+$transition-delay-slow: 400ms;
 
 
 body { // Fonts
     font-family: 'Open Sans', sans-serif;
-
-    //! DELETE
-    height: 3000px
 }
 
 .wrapper {
-    max-width: 1900px;
+    max-width: 1920px;
     margin: auto;
-    display: block;
+    display: grid;
+    grid-template-columns: 0 auto;
+    transition: grid-template-columns $transition-delay-slow;
+    transition-timing-function: ease-out;
+
+    &--sidebar-active {
+    grid-template-columns: 17em auto;
+    }
+    
+    //! DELETE
+    height: 3000px
 }
 
 .button {
@@ -164,7 +172,7 @@ body { // Fonts
 }
 
 .header {
-    height: 4.5em;
+    height: clamp(3em, calc(20vw * 0.3), 4.5em);
     padding-left: clamp(0.5em, 2vw, 1.875em);
     padding-right:clamp(0.5em, 2vw, 1.875em);
     position: sticky;
@@ -212,7 +220,22 @@ body { // Fonts
     }
 }
 
-@media screen and (max-width: 890px) {
+.sidebar {
+    width: 0;
+    height: 100vh;
+    display: block;
+    position: sticky;
+    top: 0;
+    background-color: red;
+    transition: width $transition-delay-slow;
+    transition-timing-function: ease-out;
+
+    &--active {
+        width: 17em;
+    }
+}
+
+@media screen and (max-width: 950px) {
     .header {
 
         &__link {

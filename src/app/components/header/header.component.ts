@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, EventEmitter, Output } from '@angular/core';
 
 import { AuthorizationService } from '../../services/authorization.service';
 
@@ -10,14 +10,18 @@ import { AuthorizationService } from '../../services/authorization.service';
   }
 })
 export class HeaderComponent {
-  showSearchDropdown: boolean = false;
-  showNotificationsDropdown: boolean = false;
+  // showSearchDropdown: boolean = false;
+  // showNotificationsDropdown: boolean = false;
+
+  // Sidebar toggle button control
+
+    @Output("toggleSidebar") toggleSidebar: EventEmitter<void> = new EventEmitter<void>()
 
   // Language dropdown control
 
   showLanguageDropdown: boolean = false;
 
-  headerLanguage?: ElementRef;
+    headerLanguage?: ElementRef;
     @ViewChild('header__language') set headerLanguageSet(content: ElementRef) {
       if (content) {
         this.headerLanguage = content;
@@ -31,7 +35,7 @@ export class HeaderComponent {
       }
     } 
 
-    toggleLanguageDropdown() {
+    toggleLanguageDropdown(): void {
       this.showLanguageDropdown = !this.showLanguageDropdown;
     }
   
@@ -53,13 +57,13 @@ export class HeaderComponent {
       }
     } 
 
-    toggleProfileDropdown() {
+    toggleProfileDropdown(): void {
       this.showProfileDropdown = !this.showProfileDropdown;
     }
 
   // Onclick for the dropdown controls
 
-    onClick(event: MouseEvent) {
+    onClick(event: MouseEvent): void {
       if (!this.headerProfile?.nativeElement.contains(event.target) && !this.headerProfileDropdown?.nativeElement.contains(event.target)) {
         this.showProfileDropdown = false;
       };

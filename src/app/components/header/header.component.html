@@ -1,13 +1,17 @@
 <header class="header">
 
-    <button class="button button--small button--content-icon">
+    <button class="button button--small button--content-icon"
+        (click)="toggleSidebar.emit()"
+    >
         <img class="button__icon" src="../../../assets/icons/rows.svg">
     </button>
 
-    <a class="header__link">Home</a>
-    <a class="header__link">Courses</a>
-    <a class="header__link">Blogs</a>
-    <a class="header__link">About</a>
+    <nav class="header__navigation">
+        <a class="header__link">Home</a>
+        <a class="header__link">Courses</a>
+        <a class="header__link">Blogs</a>
+        <a class="header__link">About</a>
+    </nav>
     
     <button class="header__language button button--color-transparent"
         #header__language
