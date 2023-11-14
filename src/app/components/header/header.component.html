@@ -7,10 +7,10 @@
     </button>
 
     <nav class="header__navigation">
-        <a class="header__link">Home</a>
-        <a class="header__link">Courses</a>
-        <a class="header__link">Blogs</a>
-        <a class="header__link">About</a>
+        <a class="header__link" tabindex="0">Home</a>
+        <a class="header__link" tabindex="0">Courses</a>
+        <a class="header__link" tabindex="0">Blogs</a>
+        <a class="header__link" tabindex="0">About</a>
     </nav>
     
     <button class="header__language button button--color-transparent"
@@ -18,21 +18,33 @@
         (click)="toggleLanguageDropdown()"
     >
         English
-        <div class="dropdown"
+        <div class="dropdown dropdown--padding-small"
             *ngIf="showLanguageDropdown"
             #header__languageDropdown
             (click)="$event.stopPropagation()"
         >
-            <a class="dropdown__link">English</a>
-            <a class="dropdown__link">Русский</a>
+            <a class="dropdown__link" tabindex="0">English</a>
+            <a class="dropdown__link" tabindex="0">Русский</a>
         </div>
     </button>
 
     <div class="header__separator"></div>
 
-    <button class="header__search button button--content-icon button--color-transparent">
+    <button class="header__search button button--content-icon button--color-transparent"
+        #header__search
+        (click)="toggleSearchDropdown()"
+    >
         <img class="button__icon header__icon" src="../../../assets/icons/search.svg" alt="">
+        <div class="dropdown dropdown--padding-normal header__search-dropdown"
+            #header__searchDropdown
+            *ngIf="showSearchDropdown"
+            [class.header__search-dropdown--authorized]="AuthorizationService.authorized"
+            (click)="$event.stopPropagation()"
+        >
+            <input class="searchbar" type="text" placeholder="Search">
+        </div>
     </button>
+
     <button class="button button--content-icon button--color-transparent"
         *ngIf="AuthorizationService.authorized"
     >
@@ -61,18 +73,18 @@
     >
         <img class="button__image" src="../../../assets/profile-pic.jpg" alt="">
         <span class="button__text">Peter Evans</span>
-        <div class="dropdown"
+        <div class="dropdown dropdown--padding-small"
             #header__profileDropdown
             *ngIf="showProfileDropdown"
             (click)="$event.stopPropagation()"
         >
-            <a class="dropdown__link">Profile</a>
+            <a class="dropdown__link" tabindex="0">Profile</a>
             <div class="dropdown__separator"></div>
-            <a class="dropdown__link">Grades</a>
-            <a class="dropdown__link">Calendar</a>
-            <a class="dropdown__link">Files</a>
+            <a class="dropdown__link" tabindex="0">Grades</a>
+            <a class="dropdown__link" tabindex="0">Calendar</a>
+            <a class="dropdown__link" tabindex="0">Files</a>
             <div class="dropdown__separator"></div>
-            <a class="dropdown__link"
+            <a class="dropdown__link" tabindex="0"
                 (click)="logOut()"
             >Log out</a>
         </div>

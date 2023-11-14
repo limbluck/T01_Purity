@@ -10,16 +10,38 @@ import { AuthorizationService } from '../../services/authorization.service';
   }
 })
 export class HeaderComponent {
-  // showSearchDropdown: boolean = false;
+  
   // showNotificationsDropdown: boolean = false;
 
   // Sidebar toggle button control
 
     @Output("toggleSidebar") toggleSidebar: EventEmitter<void> = new EventEmitter<void>()
 
+  // showSearchDropdown: boolean = false;
+
+    showSearchDropdown: boolean = false;
+
+    headerSearch?: ElementRef;
+    @ViewChild('header__search') set headerSearchSet(content: ElementRef) {
+      if (content) {
+        this.headerSearch = content;
+      }
+    } 
+
+    headerSearchDropdown?: ElementRef;
+    @ViewChild('header__searchDropdown') set headerSearchDropdownSet(content: ElementRef) {
+      if (content) {
+        this.headerSearchDropdown = content;
+      }
+    } 
+
+    toggleSearchDropdown(): void {
+      this.showSearchDropdown = !this.showSearchDropdown;
+    }
+
   // Language dropdown control
 
-  showLanguageDropdown: boolean = false;
+    showLanguageDropdown: boolean = false;
 
     headerLanguage?: ElementRef;
     @ViewChild('header__language') set headerLanguageSet(content: ElementRef) {
@@ -69,6 +91,9 @@ export class HeaderComponent {
       };
       if (!this.headerLanguage?.nativeElement.contains(event.target) && !this.headerLanguageDropdown?.nativeElement.contains(event.target)) {
         this.showLanguageDropdown = false;
+      };
+      if (!this.headerSearch?.nativeElement.contains(event.target) && !this.headerSearchDropdown?.nativeElement.contains(event.target)) {
+        this.showSearchDropdown = false;
       };
     }
     
