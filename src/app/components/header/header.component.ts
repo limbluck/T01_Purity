@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild, inject, EventEmitter, Output } from '@angular/core';
-
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -11,13 +10,9 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class HeaderComponent {
   
-  // showNotificationsDropdown: boolean = false;
-
-  // Sidebar toggle button control
+  // #region Sidebar toggle control
 
     @Output("toggleSidebar") toggleSidebar: EventEmitter<void> = new EventEmitter<void>()
-
-  // showSearchDropdown: boolean = false;
 
     showSearchDropdown: boolean = false;
 
@@ -38,8 +33,9 @@ export class HeaderComponent {
     toggleSearchDropdown(): void {
       this.showSearchDropdown = !this.showSearchDropdown;
     }
+  // #endregion
 
-  // Language dropdown control
+  // #region Language dropdown control
 
     showLanguageDropdown: boolean = false;
 
@@ -60,8 +56,34 @@ export class HeaderComponent {
     toggleLanguageDropdown(): void {
       this.showLanguageDropdown = !this.showLanguageDropdown;
     }
+
+  // #endregion
+
+  // #region Notifications dropdown control
   
-  // Profile dropdown control
+    showNotificationsDropdown: boolean = true;
+
+    headerNotifications?: ElementRef;
+    @ViewChild('header__notifications') set headerNotificationsSet(content: ElementRef) {
+      if (content) {
+        this.headerNotifications = content;
+      }
+    } 
+
+    headerNotificationsDropdown?: ElementRef;
+    @ViewChild('header__notificationsDropdown') set headerNotificationsDropdownSet(content: ElementRef) {
+      if (content) {
+        this.headerNotificationsDropdown = content;
+      }
+    } 
+
+    toggleNotificationsDropdown(): void {
+      this.showNotificationsDropdown = !this.showNotificationsDropdown;
+    }
+  
+  // #endregion
+
+  // #region Profile dropdown control
 
     showProfileDropdown: boolean = false;
 
@@ -83,22 +105,29 @@ export class HeaderComponent {
       this.showProfileDropdown = !this.showProfileDropdown;
     }
 
-  // Onclick for the dropdown controls
+  // #endregion
 
-    onClick(event: MouseEvent): void {
-      if (!this.headerProfile?.nativeElement.contains(event.target) && !this.headerProfileDropdown?.nativeElement.contains(event.target)) {
-        this.showProfileDropdown = false;
-      };
-      if (!this.headerLanguage?.nativeElement.contains(event.target) && !this.headerLanguageDropdown?.nativeElement.contains(event.target)) {
-        this.showLanguageDropdown = false;
-      };
-      if (!this.headerSearch?.nativeElement.contains(event.target) && !this.headerSearchDropdown?.nativeElement.contains(event.target)) {
-        this.showSearchDropdown = false;
-      };
-    }
-    
+  onClick(event: MouseEvent): void {
 
-  // Authorization
+    // #region Dropdowns controls
+
+    if (!this.headerProfile?.nativeElement.contains(event.target) && !this.headerProfileDropdown?.nativeElement.contains(event.target)) {
+      this.showProfileDropdown = false;
+    };
+    if (!this.headerLanguage?.nativeElement.contains(event.target) && !this.headerLanguageDropdown?.nativeElement.contains(event.target)) {
+      this.showLanguageDropdown = false;
+    };
+    if (!this.headerSearch?.nativeElement.contains(event.target) && !this.headerSearchDropdown?.nativeElement.contains(event.target)) {
+      this.showSearchDropdown = false;
+    };
+    if (!this.headerNotifications?.nativeElement.contains(event.target) && !this.headerNotificationsDropdown?.nativeElement.contains(event.target)) {
+      this.showNotificationsDropdown = false;
+    };
+
+    // #endregion
+  }
+
+  // #region Authorization
     AuthorizationService: AuthorizationService = inject(AuthorizationService);
     
     logIn(): void {
@@ -108,5 +137,7 @@ export class HeaderComponent {
     logOut(): void {
       this.AuthorizationService.logOut();
     };
+
+  // #endregion
 
 }

@@ -36,11 +36,13 @@
         #header__search
         (click)="toggleSearchDropdown()"
     >
-        <img class="button__icon header__icon" src="../../../assets/icons/search.svg" alt="">
+        <img class="button__icon" src="../../../assets/icons/search.svg" alt=""
+            [ngClass]="{'button__icon--opacity-base': !showSearchDropdown, 'button__icon--opacity-active': showSearchDropdown}"
+        >
         @if (showSearchDropdown) {
-            <div class="dropdown dropdown--padding-normal header__search-dropdown"
+            <div class="header__searchDropdown dropdown dropdown--padding-normal"
                 #header__searchDropdown
-                [class.header__search-dropdown--authorized]="AuthorizationService.authorized"
+                [class.header__searchDropdown--authorized]="AuthorizationService.authorized"
                 (click)="$event.stopPropagation()"
             >
                 <input class="searchbar" type="text" placeholder="Search">
@@ -50,11 +52,173 @@
     </button>
 
     @if(AuthorizationService.authorized) {
-        <button class="button button--content-icon button--color-transparent">
-            <img class="button__icon header__icon" src="../../../assets/icons/notification.svg" alt="">
+        <button class="header__notifications button button--content-icon button--color-transparent"
+            #header__notifications
+            (click)="toggleNotificationsDropdown()"
+        >
+            <img class="button__icon button__icon--opacity-base" src="../../../assets/icons/notification.svg" alt=""
+                [ngClass]="{'button__icon--opacity-base': !showNotificationsDropdown, 'button__icon--opacity-active': showNotificationsDropdown}"
+            >
+            @if (showNotificationsDropdown) {
+                <div class="header__notificationsDropdown dropdown"
+                    #header__notificationsDropdown
+                    (click)="$event.stopPropagation()"
+                >
+                    <div class="notificationsDropdown">
+                        <div class="notificationsDropdown__headerContainer">
+                            <span class="notificationsDropdown__header">Notifications</span>
+                            <button class="notificationsDropdown__headerButton button button--content-icon button--color-transparent">
+                                <img class="notificationsDropdown__headerIcon button__icon" src="../../../assets/icons/check.svg" alt="">
+                            </button>
+                            <button class="notificationsDropdown__headerButton button button--content-icon button--color-transparent">
+                                <img class="notificationsDropdown__headerIcon button__icon" src="../../../assets/icons/settings.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="notificationsDropdown__notificationsContainer">
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <img class="notification__icon" src="../../../assets/icons/light_bulb.svg" alt="">
+                                <div class="notification__container">
+                                    <span class="notification__header">You just earned a badge!</span>
+                                    <span class="notification__timestamp">2 years 320 days ago</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="notificationsDropdown__button button button--flex-center">See all</div>
+                    </div>
+                </div>
+            }
+
         </button>
-        <button class="button button--content-icon button--color-transparent">
-            <img class="button__icon header__icon" src="../../../assets/icons/chat.svg" alt="">
+
+        <button class="header__chat button button--content-icon button--color-transparent">
+            <img class="button__icon button__icon--opacity-base" src="../../../assets/icons/chat.svg" alt="">
         </button>
     }
 
@@ -94,9 +258,5 @@
             }
         </button>
     }
-
-    
-
-    
 
 </header>
