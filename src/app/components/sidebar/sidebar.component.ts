@@ -8,7 +8,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class SidebarComponent {
 
-  // Authorization
+  // #region Authorization
     AuthorizationService: AuthorizationService = inject(AuthorizationService);
 
     logIn(): void {
@@ -18,5 +18,7 @@ export class SidebarComponent {
     logOut(): void {
       this.AuthorizationService.logOut();
     };
+
+  // #endregion
 
 }

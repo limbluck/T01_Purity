@@ -6,11 +6,10 @@
         [class.sidebar--active]="showSidebar"
     ></app-sidebar>
 
-    <div class="wrapper__page">
-        
-        <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    <app-header class="header header--sidebar-active"
+        [class.header--sidebar-active]="showSidebar"
+        (toggleSidebar)="toggleSidebar()"
+    ></app-header>
 
-        <router-outlet></router-outlet>
-
-    </div>
+    <router-outlet  class="wrapper__page"></router-outlet>
 </div>
