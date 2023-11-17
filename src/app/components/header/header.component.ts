@@ -4,6 +4,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
   host: {
     '(document:click)': 'onClick($event)'
   }

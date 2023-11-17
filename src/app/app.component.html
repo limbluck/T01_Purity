@@ -11,5 +11,10 @@
         (toggleSidebar)="toggleSidebar()"
     ></app-header>
 
-    <router-outlet  class="wrapper__page"></router-outlet>
+    <div class="wrapper__page"
+        [class.wrapper__page--sidebar-active]="showSidebar"
+    >
+        <router-outlet></router-outlet>
+    </div>
+
 </div>

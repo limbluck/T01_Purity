@@ -57,19 +57,73 @@ body { // Fonts
     font-family: 'Open Sans', sans-serif;
 }
 
+.banner {
+    height: 30em;
+    position: relative;
+    &:hover {
+        .banner {
+            &__next {
+                display: flex;
+            }
+            &__pervious {
+                display: flex;
+            }
+        }
+    }
+
+    &__background {
+        min-width: 100%;
+        min-height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+    &__container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__next {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-100%, -50%);
+        font-size: 0.795rem;
+    }
+
+    &__pervious {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(100%, -50%);
+        font-size: 0.795rem;
+    }
+}
+
 .wrapper {
     max-width: 1920px;
     margin: auto;
     position: relative;
     
+    &__page {
+        margin-top: clamp(3em, calc(20vw * 0.3), 4.5em);
+        transition: margin $transition-delay-slow ease-out;
+        overflow: hidden;
+
+        &--sidebar-active {
+            margin-left: 17em;
+        }
+    }
+    
     //! DELETE
     height: 3000px;
-
-    &--sidebar-active {
-    }
-
-    &__page {
-    }
 }
 
 .button {
@@ -83,25 +137,14 @@ body { // Fonts
     flex-shrink: 0;
     cursor: pointer;
     transition: transform $transition-delay, background-color $transition-delay;
-    &:hover {
-        transform: scale(1.05);
-    }
+    
     &:active {
         background-color: $color_base-4;
-    }
-
-    &--small {
-        font-size: 0.75rem;
-        height: 2.5em;
     }
 
     &--content-icon {
         padding: 0;
         width: 2.75em;
-    }
-
-    &--small.button--content-icon {
-        width: 2.5em;
     }
 
     &--content-with-image {
@@ -122,10 +165,25 @@ body { // Fonts
         }
     }
 
+    &--color-transparentDark {
+        color: $color_text-2;
+        background-color: $color_transparent-dark;
+        transition: background-color $transition-delay;
+        &:active {
+            background-color: $color_base-5;
+        }
+    }
+
     &--flex-center {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    &--hover-scale {
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 
     &__icon {
@@ -144,8 +202,18 @@ body { // Fonts
             fill: $color_text-1;
         }
 
-        &--color-base3{
+        &--color-base3 {
             fill: $color_base-3;
+        }
+
+        &--color-transparentDark {
+            fill: $color_background-7;
+        }
+
+        &--hover-scale {
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 
@@ -221,6 +289,10 @@ body { // Fonts
         width: calc(100% - 17em);
     }
     
+    &__sidebarButton {
+        font-size: 0.725rem;
+    }
+
     &__container{
         height: clamp(3em, calc(20vw * 0.3), 4.5em);
         padding-left: clamp(0.5em, 2vw, 1.875em);
@@ -399,8 +471,8 @@ body { // Fonts
     }
 
     &__logoContainer {
-        height: clamp(3em, calc(20vw * 0.3), 4.5em);
-        margin: 0 0 clamp(1em, 2.25vw, 1.688em);
+        height: 4.5em;
+        margin: 0 0 clamp(0em, 1.5vw, 1.688em);
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -463,6 +535,7 @@ body { // Fonts
 
     .sidebar {
         margin-top: clamp(3em, calc(20vw * 0.3), 4.5em);
+        height: calc(100% - clamp(3em, calc(20vw * 0.3), 4.5em));
 
         &--active {
             margin-top: clamp(3em, calc(20vw * 0.3), 4.5em);
@@ -478,7 +551,7 @@ body { // Fonts
     }
 }
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .header {
 
         &__link {
@@ -523,5 +596,3 @@ body { // Fonts
         }
     }
 }
-
-
