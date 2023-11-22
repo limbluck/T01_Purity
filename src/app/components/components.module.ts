@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { IfDropdownDirective } from './directives/if-dropdown.directive';
+import { IfDropdownDirective } from '../directives/if-dropdown.directive';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    SidebarComponent,
-    IfDropdownDirective
+    SidebarComponent
   ],
   imports: [
-    AppRoutingModule
+    AppRoutingModule,
+    IfDropdownDirective
   ],
   exports: [
     HeaderComponent,
