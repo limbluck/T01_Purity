@@ -20,20 +20,21 @@
     </nav>
     
     <button class="language"
-        #language
         (click)="toggleLanguageDropdown()"
     >
         <span class="language__full">English</span>
         <span class="language__short">En</span>
-        @if (showLanguageDropdown) {
+        <ng-template
+            [appIfDropdown]="showLanguageDropdown"
+            (appIfDropdownToggle)="toggleLanguageDropdown()"
+        >
             <div class="language__dropdown"
-                #language__dropdown
-                (click)="$event.stopPropagation()"
+                (click)='$event.stopPropagation()'
             >
                 <a class="language__option" tabindex="0">English</a>
                 <a class="language__option" tabindex="0">Русский</a>
             </div>
-        }
+        </ng-template>
     </button>
 
     <div class="header__separator"
@@ -41,7 +42,6 @@
     ></div>
 
     <button class="search"
-        #search
         (click)="toggleSearchDropdown()"
     >
         <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"
@@ -49,20 +49,21 @@
         >
             <path d="M49.62,45.27,36.22,32a18.9,18.9,0,1,0-34.1-9.2A18.91,18.91,0,0,0,32,36.27l13.3,13.3a1.45,1.45,0,0,0,2.1,0l2.1-2.1A1.68,1.68,0,0,0,49.62,45.27Zm-28.7-11.5a12.9,12.9,0,1,1,12.9-12.9A12.87,12.87,0,0,1,20.92,33.77Z" fill-rule="evenodd"/>
         </svg>
-        @if (showSearchDropdown) {
+        <ng-template
+            [appIfDropdown]="showSearchDropdown"
+            (appIfDropdownToggle)="toggleSearchDropdown()"
+        >
             <div class="search__dropdown"
-                #search_dropdown
                 [class.authorized]="AuthorizationService.authorized"
                 (click)="$event.stopPropagation()"
             >
                 <input class="search__searchbar" type="text" placeholder="Search">
             </div>
-        }
+        </ng-template>
     </button>
 
     @if(AuthorizationService.authorized) {
         <button class="notifications"
-            #notifications
             (click)="toggleNotificationsDropdown()"
         >
             <svg class="notifications__icon"
@@ -74,9 +75,11 @@
                     <path d="M30.9,44h-9.8c-0.6,0-1.1,0.6-1,1.2c0.5,2.8,3,4.8,5.9,4.8s5.4-2.1,5.9-4.8C32,44.6,31.5,44,30.9,44z"/>
                 </g>
             </svg>
-            @if (showNotificationsDropdown) {
+            <ng-template
+                [appIfDropdown]="showNotificationsDropdown"
+                (appIfDropdownToggle)="toggleNotificationsDropdown()"
+            >
                 <div class="notifications__dropdown"
-                    #notifications__dropdown
                     (click)="$event.stopPropagation()"
                 >
                     <div class="notifications__header-container">
@@ -116,7 +119,7 @@
                     </div>
                     <div class="notifications__see-all-button">See all</div>
                 </div>
-            }
+            </ng-template>
         </button>
         
         <button class="chat">
@@ -142,17 +145,17 @@
 
     @if (AuthorizationService.authorized) {
         <button class="profile"
-            ngModel
-            #profile
             (click)="toggleProfileDropdown()"
         >
             <img class="profile__image" src="../../../assets/profile-pic.jpg" alt="">
             <span class="profile__name"
                 [class.active]="showProfileDropdown"
             >Peter Evans</span>
-            @if (showProfileDropdown) {
+            <ng-template
+                [appIfDropdown]="showProfileDropdown"
+                (appIfDropdownToggle)="toggleProfileDropdown()"
+            >
                 <div class="profile__dropdown"
-                    #profile__dropdown
                     (click)="$event.stopPropagation()"
                 >
                     <a class="profile__option" tabindex="0">Profile</a>
@@ -165,7 +168,7 @@
                         (click)="logOut()"
                     >Log out</a>
                 </div>
-            }
+            </ng-template>
         </button>
     }
 
