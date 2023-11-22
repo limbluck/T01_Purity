@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'T01_Purity';
@@ -12,5 +12,5 @@ export class AppComponent {
 
   toggleSidebar() {
     this.showSidebar = !this.showSidebar;
-  };
+  }
 }

@@ -1,20 +1,27 @@
-<div class="wrapper"
-    [class.wrapper--sidebar-active]="showSidebar"
+<div class="layout"
+    [class.sidebar-active]="showSidebar"
 >
-
-    <app-sidebar class="sidebar"
-        [class.sidebar--active]="showSidebar"
-    ></app-sidebar>
-
-    <app-header class="header header--sidebar-active"
-        [class.header--sidebar-active]="showSidebar"
-        (toggleSidebar)="toggleSidebar()"
-    ></app-header>
-
-    <div class="wrapper__page"
-        [class.wrapper__page--sidebar-active]="showSidebar"
+    <div class="layout__sidebar
+                sidebar"
+        [class.active]="showSidebar"
     >
-        <router-outlet></router-outlet>
+        <app-sidebar #sidebar></app-sidebar>
+    </div>
+
+    <div class="layout__page">
+        <div class="header"
+            [class.sidebar-active]="showSidebar"
+        >
+            <app-header
+                (toggleSidebar)="toggleSidebar()"
+            ></app-header>
+        </div>
+
+        <div class="page"
+            [class.sidebar-active]="showSidebar"
+        >
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
 </div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -11,21 +11,25 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class HeaderComponent {
   
+
+
   // #region Sidebar toggle control
 
-    @Output("toggleSidebar") toggleSidebar: EventEmitter<void> = new EventEmitter<void>()
+    @Output() toggleSidebar: EventEmitter<void> = new EventEmitter<void>();
+  //#endregion
 
+ // #region Search toggle control
     showSearchDropdown: boolean = false;
 
     headerSearch?: ElementRef;
-    @ViewChild('header__search') set headerSearchSet(content: ElementRef) {
+    @ViewChild('search') set headerSearchSet(content: ElementRef) {
       if (content) {
         this.headerSearch = content;
       }
     } 
 
     headerSearchDropdown?: ElementRef;
-    @ViewChild('header__searchDropdown') set headerSearchDropdownSet(content: ElementRef) {
+    @ViewChild('search__dropdown') set headerSearchDropdownSet(content: ElementRef) {
       if (content) {
         this.headerSearchDropdown = content;
       }
@@ -41,14 +45,14 @@ export class HeaderComponent {
     showLanguageDropdown: boolean = false;
 
     headerLanguage?: ElementRef;
-    @ViewChild('header__language') set headerLanguageSet(content: ElementRef) {
+    @ViewChild('language') set headerLanguageSet(content: ElementRef) {
       if (content) {
         this.headerLanguage = content;
       }
     } 
 
     headerLanguageDropdown?: ElementRef;
-    @ViewChild('header__languageDropdown') set headerLanguageDropdownSet(content: ElementRef) {
+    @ViewChild('language__dropdown') set headerLanguageDropdownSet(content: ElementRef) {
       if (content) {
         this.headerLanguageDropdown = content;
       }
@@ -65,14 +69,14 @@ export class HeaderComponent {
     showNotificationsDropdown: boolean = true;
 
     headerNotifications?: ElementRef;
-    @ViewChild('header__notifications') set headerNotificationsSet(content: ElementRef) {
+    @ViewChild('notifications') set headerNotificationsSet(content: ElementRef) {
       if (content) {
         this.headerNotifications = content;
       }
     } 
 
     headerNotificationsDropdown?: ElementRef;
-    @ViewChild('header__notificationsDropdown') set headerNotificationsDropdownSet(content: ElementRef) {
+    @ViewChild('notifications__dropdown') set headerNotificationsDropdownSet(content: ElementRef) {
       if (content) {
         this.headerNotificationsDropdown = content;
       }
@@ -89,14 +93,14 @@ export class HeaderComponent {
     showProfileDropdown: boolean = false;
 
     headerProfile?: ElementRef;
-    @ViewChild('header__profile') set headerProfileSet(content: ElementRef) {
+    @ViewChild('profile') set headerProfileSet(content: ElementRef) {
       if (content) {
         this.headerProfile = content;
       }
     } 
 
     headerProfileDropdown?: ElementRef;
-    @ViewChild('header__profileDropdown') set headerProfileDropdownSet(content: ElementRef) {
+    @ViewChild('profile__dropdown') set headerProfileDropdownSet(content: ElementRef) {
       if (content) {
         this.headerProfileDropdown = content;
       }
