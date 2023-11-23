@@ -1,16 +1,22 @@
-<div class="layout"
-    [class.sidebar-active]="showSidebar"
->
-    <app-sidebar class="layout__sidebar sidebar"></app-sidebar>
-
-    <div class="layout__page">
-        <app-header class="header"
-            (toggleSidebar)="toggleSidebar()"
-        ></app-header>
-
-        <div class="page">
-            <router-outlet></router-outlet>
-        </div>
+<div class="wrapper">
+    
+    <app-header class="header"
+        [class.sidebar-active]="showSidebar"
+        (toggleSidebar)="toggleSidebar()"
+    ></app-header>
+    
+    <div class="sidebar"
+        [class.sidebar-active]="showSidebar"
+    >
+        <app-sidebar class="sidebar__container"
+            [class.sidebar-active]="showSidebar"
+        ></app-sidebar>
+    </div>
+    
+    <div class="page"
+        [class.sidebar-active]="showSidebar"
+    >
+        <router-outlet></router-outlet>
     </div>
 
 </div>

@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'T01_Purity';
 
   showSidebar: boolean = false;
 
   toggleSidebar() {
     this.showSidebar = !this.showSidebar;
+    console.log('1234');
   }
 }
