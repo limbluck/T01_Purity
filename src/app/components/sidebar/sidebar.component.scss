@@ -72,6 +72,8 @@
         opacity: 0.6;
         
         cursor: pointer;
+        user-select: none;
+
         transition: opacity 150ms, color 150ms;
         &:hover {
             color: #5E72E4;
@@ -129,6 +131,8 @@
         opacity: 0.6;
 
         cursor: pointer;
+        user-select: none;
+
         &:hover {
             opacity: 0.9;
             color: #5E72E4;

@@ -1,37 +1,85 @@
-<h1 style="position: absolute; overflow: hidden; width: 0; height: 0">Home</h1>
+<h1 class="page-header hidden">Home</h1>
 
 <section class="banner">
 
-    <div class="banner__container">
-        <h2 class="banner__header">Learn Without Limits</h2>
-        <p class="banner__text">Explore endless learning possibilities at Purity. Elevate your education journey with diverse courses.</p>
-        <button class="banner__button">Find Out More</button>
+    <button class="banner__slide left"
+        (click)="slideLeft()"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+            <g>
+                <path d="M34.2,47.7L13.4,27.2c-0.6-0.6-0.6-1.6,0-2.2L34.2,4.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L22.1,25c-0.6,0.6-0.6,1.6,0,2.2l16.3,16.1c0.6,0.6,0.6,1.6,0,2.2l-2.2,2.2C35.7,48.2,34.8,48.2,34.2,47.7z"/>
+            </g>
+        </svg>
+    </button>
+    <button class="banner__slide right"
+        (click)="slideRight()"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+            <g>
+                <path d="M17.9,4.4l20.7,20.5c0.6,0.6,0.6,1.6,0,2.2L17.9,47.6c-0.6,0.6-1.6,0.6-2.2,0l-2.2-2.2c-0.6-0.6-0.6-1.6,0-2.2l16.3-16.1c0.6-0.6,0.6-1.6,0-2.2L13.6,8.8c-0.6-0.6-0.6-1.6,0-2.2l2.2-2.2C16.4,3.9,17.3,3.9,17.9,4.4z"/>
+            </g>
+        </svg>
+    </button>
+
+    <!-- CSS animations, JS swipe interaction (w/o animation) -->
+
+    <div class="banner__item"
+        [@changeBanner]="show1stBanner"
+    >
+        <div class="banner__container"
+            [@showBannerContainer]="show1stBanner"
+        >
+            <h2 class="banner__header">Learn Without Limits</h2>
+            <p class="banner__text">
+                Explore endless learning possibilities at Purity.
+                <br>
+                Elevate your education journey with diverse courses.
+            </p>
+            <b class="banner__button">Find Out More</b>
+        </div>
+        <img class="banner__background" src="../../../../assets/banner/banner1.jpg" draggable="false"
+            [@scaleBannerBackground]="show1stBanner"
+        >
     </div>
 
-    <img class="banner__background" src="../../../../assets/banner/banner1.jpg">
-
-</section>
-
-<section class="banner">
-
-    <div class="banner__container">
-        <h2 class="banner__header">Where Knowledge Knows No Bounds</h2>
-        <p class="banner__text">Embark on a journey of unlimited learning with Purity. Explore diverse courses tailored for your success. Unleash your potential today!</p>
-        <button class="banner__button">Start Your Odyssey</button>
+    <div class="banner__item"
+        [@changeBanner]="show2ndBanner"
+    >
+        <div class="banner__container"
+            [@showBannerContainer]="show2ndBanner"
+        >
+            <h2 class="banner__header">Where Knowledge Knows No Bounds</h2>
+            <p class="banner__text">
+                Embark on a journey of unlimited learning with Purity.
+                <br>
+                Explore diverse courses tailored for your success.
+                <br>
+                Unleash your potential today!
+            </p>
+            <a class="banner__button">Start Your Odyssey</a>
+        </div>
+        <img class="banner__background" src="../../../../assets/banner/banner2.jpg" draggable="false"
+            [@scaleBannerBackground]="show2ndBanner"
+        >
     </div>
-
-    <img class="banner__background" src="../../../../assets/banner/banner2.jpg">
-
-</section>
-
-<section class="banner">
-
-    <div class="banner__container">
-        <h2 class="banner__header">Nurturing Minds, Shaping Futures</h2>
-        <p class="banner__text">Ignite your curiosity with Purity's curated courses. Empower your intellect and chart a path to success.</p>
-        <button class="banner__button">Explore Courses</button>
+    
+    <div class="banner__item"
+        [@changeBanner]="show3rdBanner"
+    >
+        <div class="banner__container"
+            [@showBannerContainer]="show3rdBanner"
+        >
+            <h2 class="banner__header">Nurturing Minds, Shaping Futures</h2>
+            <p class="banner__text">
+                Ignite your curiosity with Purity's curated courses.
+                <br>
+                Empower your intellect and chart a path to success.
+            </p>
+            <a class="banner__button">Explore Courses</a>
+        </div>
+        <img class="banner__background" src="../../../../assets/banner/banner3.jpg" draggable="false"
+            [@scaleBannerBackground]="show3rdBanner"
+        >
     </div>
-
-    <img class="banner__background" src="../../../../assets/banner/banner3.jpg">
 
 </section>

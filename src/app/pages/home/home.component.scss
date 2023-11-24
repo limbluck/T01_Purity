@@ -1,0 +1,135 @@
+.page-header{
+    &.hidden {
+        position: absolute;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+.banner {
+    & {
+        position: relative;
+
+        height: 34.375em;
+
+        box-shadow: 0 1px 4px rgba(#000000, 0.1);
+
+        &:hover .banner__slide{
+            opacity: 1;
+        }
+    }
+
+    &__slide {
+        position: absolute;
+        top: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.188em;
+        height: 2.188em;
+        & svg {
+            width: 1.3em;
+        }
+
+        fill:   rgba(#FFFFFF, 0.8);
+        background-color: rgba(#000000, 0.4);
+        opacity: 0;
+        border-radius: 0.188em;
+        z-index: 8;
+
+        cursor: pointer;
+
+        transition: opacity 150ms;
+
+        &.left {
+            left: 0;
+            transform: translate(clamp(25%, 2vw, 100%), -50%);
+        }
+        &.right {
+            right: 0;
+            transform: translate(clamp(-100%, -2vw, -25%), -50%);
+        }
+    }
+
+    &__item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    &__container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -55%);
+
+        width: min(70%, 37.5em);
+
+        z-index: 2;
+    }
+
+    &__header {
+        font-size: 1.625rem;
+        font-weight: 600;
+        text-align: center;
+
+        color: #FFFFFF;
+
+        cursor: default;
+        user-select: none;
+    }
+
+    &__text {
+        margin: 1.25em 0 1.75em;
+
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-align: center;
+        line-height: 1.5em;
+
+        color: #FFFFFF;
+
+        cursor: default;
+        user-select: none;
+    }
+
+    &__button {
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+        padding: 0.714em 1.429em;
+
+        font-size: 0.875rem;
+        font-weight: 600;
+
+        color: #FFFFFF;
+        border: 1px solid #FFFFFF;
+        border-radius: 0.286em;
+
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &__background {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1.2);
+
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .banner {
+        &__slide {
+            display: none;
+        }
+    }    
+}

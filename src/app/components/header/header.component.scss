@@ -97,6 +97,8 @@
         &:hover {
             color: #5E72E4;
         }
+
+        user-select: none;
     }
 }
 
@@ -630,6 +632,22 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .profile {
+        &__name {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .profile {
+        &__name {
+            display: flex;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
     .profile {
         &__name {
             display: none;
