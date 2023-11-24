@@ -31,7 +31,8 @@ export class HeaderComponent {
     }
 
   // #region Authorization
-    AuthorizationService: AuthorizationService = inject(AuthorizationService);
+  
+    readonly AuthorizationService: AuthorizationService = inject(AuthorizationService);
     
     logIn(): void {
       this.AuthorizationService.logIn();
