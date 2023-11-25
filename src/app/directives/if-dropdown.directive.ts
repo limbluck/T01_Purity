@@ -62,16 +62,14 @@ export class IfDropdownDirective {
           ()=>{
             if (!this.mouseOnElement) {
               this.appIfDropdownToggle.emit();
+              this.view.clear();
+              for (let i = 0; i < this.listeners.length; i++) {
+                this.listeners[i]()
+              }
             }
           }
         )
       )
-
-    } else {
-      this.view.clear();
-      for (let i = 0; i < this.listeners.length; i++) {
-        this.listeners[i]()
-      }
     }
   }
 
