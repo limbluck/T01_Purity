@@ -46,40 +46,56 @@ import { transition, trigger, query, state, animate, animateChild, style, stagge
 })
 export class HomeComponent {
 
-  currentBanner: number = 1;
-  slideLeft() {
-    if (this.currentBanner-- < 2) {
-      this.currentBanner = 3;
-    };
-    this.switchBanner()
-  }
-  slideRight() {
-    if (this.currentBanner++ > 2) {
-      this.currentBanner = 1;
-    }
-    this.switchBanner()
-  }
+  // #region Banner
 
-  show1stBanner: string = 'shown';
-  show2ndBanner: string = 'hidden';
-  show3rdBanner: string = 'hidden';
-  switchBanner() {
-    switch (this.currentBanner) {
-      case(1):
-        this.show1stBanner = 'shown';
-        this.show2ndBanner = 'hidden';
-        this.show3rdBanner = 'hidden';
-        break
-      case(2):
-        this.show1stBanner = 'hidden';
-        this.show2ndBanner = 'shown';
-        this.show3rdBanner = 'hidden';
-        break
-      case(3):
-        this.show1stBanner = 'hidden';
-        this.show2ndBanner = 'hidden';
-        this.show3rdBanner = 'shown';
-        break
+    currentBanner: number = 1;
+    slideLeft() {
+      if (this.allowBannerChange) {
+        if (this.currentBanner-- < 2) {
+          this.currentBanner = 3;
+        };
+        this.switchBanner();
+        this.setBannerTimeout()
+      }
+    };
+    slideRight() {
+      if (this.allowBannerChange) {
+        if (this.currentBanner++ > 2) {
+          this.currentBanner = 1;
+        }
+        this.switchBanner();
+        this.setBannerTimeout()
+      }
+    };
+
+    show1stBanner: string = 'shown';
+    show2ndBanner: string = 'hidden';
+    show3rdBanner: string = 'hidden';
+    switchBanner() {
+      switch (this.currentBanner) {
+        case(1):
+          this.show1stBanner = 'shown';
+          this.show2ndBanner = 'hidden';
+          this.show3rdBanner = 'hidden';
+          break
+        case(2):
+          this.show1stBanner = 'hidden';
+          this.show2ndBanner = 'shown';
+          this.show3rdBanner = 'hidden';
+          break
+        case(3):
+          this.show1stBanner = 'hidden';
+          this.show2ndBanner = 'hidden';
+          this.show3rdBanner = 'shown';
+          break
+      }
+    };
+
+    allowBannerChange: boolean = true;
+    setBannerTimeout() {
+      this.allowBannerChange = false;
+      setTimeout( ()=>{this.allowBannerChange = true} , 1200)
     }
-  }
+
+  // #endregion
 }
