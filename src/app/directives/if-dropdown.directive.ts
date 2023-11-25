@@ -1,8 +1,7 @@
 import { Directive, TemplateRef, ViewContainerRef, Input, Output, Renderer2, inject, EventEmitter} from '@angular/core';
 
 @Directive({
-  selector: '[appIfDropdown]',
-  standalone: true
+  selector: '[appIfDropdown]'
 })
 export class IfDropdownDirective {
 /**

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { transition, trigger, query, state, animate, animateChild, style, stagger } from '@angular/animations';
+import { Component, inject } from '@angular/core';
+import { transition, trigger, state, animate, style } from '@angular/animations';
+import { Observable, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -57,7 +58,7 @@ export class HomeComponent {
         this.switchBanner();
         this.setBannerTimeout()
       }
-    };
+    }
     slideRight() {
       if (this.allowBannerChange) {
         if (this.currentBanner++ > 2) {
@@ -66,7 +67,7 @@ export class HomeComponent {
         this.switchBanner();
         this.setBannerTimeout()
       }
-    };
+    }
 
     show1stBanner: string = 'shown';
     show2ndBanner: string = 'hidden';
@@ -89,7 +90,7 @@ export class HomeComponent {
           this.show3rdBanner = 'shown';
           break
       }
-    };
+    }
 
     allowBannerChange: boolean = true;
     setBannerTimeout() {
@@ -98,4 +99,5 @@ export class HomeComponent {
     }
 
   // #endregion
+  
 }
