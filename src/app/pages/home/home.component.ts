@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { transition, trigger, state, animate, style } from '@angular/animations';
-import { Observable, fromEvent } from 'rxjs';
+import { Component } from '@angular/core';
+import { transition, trigger, state, animate, style, query, animateChild, group } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
@@ -64,53 +63,57 @@ export class HomeComponent {
 
   // #region Banner
 
-    currentBanner: number = 1;
-    slideLeft() {
-      if (this.allowBannerChange) {
-        if (this.currentBanner-- < 2) {
-          this.currentBanner = 3;
+    bannerCurrent: number = 1;
+    bannerChange(side: string) {
+      if (this.bannerAllowChange) {
+        switch (side) {
+          case ('left'):
+            if (this.bannerCurrent-- < 2) {
+              this.bannerCurrent = 3;
+            };
+            break
+          case ('right'):
+            if (this.bannerCurrent++ > 2) {
+              this.bannerCurrent = 1;
+            };
+            break
+          default:
+            throw new Error("Unexpected value of 'side' variable in bannerChange() function")
         };
-        this.switchBanner();
-        this.setBannerTimeout()
-      }
-    }
-    slideRight() {
-      if (this.allowBannerChange) {
-        if (this.currentBanner++ > 2) {
-          this.currentBanner = 1;
-        }
-        this.switchBanner();
-        this.setBannerTimeout()
+        this.bannerSwitch();
+        this.bannerTimeout()
       }
     }
 
-    show1stBanner: string = 'shown';
-    show2ndBanner: string = 'hidden';
-    show3rdBanner: string = 'hidden';
-    switchBanner() {
-      switch (this.currentBanner) {
+    banner1stItem: string = 'shown';
+    banner2ndItem: string = 'hidden';
+    banner3rdItem: string = 'hidden';
+    bannerSwitch() {
+      switch (this.bannerCurrent) {
         case(1):
-          this.show1stBanner = 'shown';
-          this.show2ndBanner = 'hidden';
-          this.show3rdBanner = 'hidden';
+          this.banner1stItem = 'shown';
+          this.banner2ndItem = 'hidden';
+          this.banner3rdItem = 'hidden';
           break
         case(2):
-          this.show1stBanner = 'hidden';
-          this.show2ndBanner = 'shown';
-          this.show3rdBanner = 'hidden';
+          this.banner1stItem = 'hidden';
+          this.banner2ndItem = 'shown';
+          this.banner3rdItem = 'hidden';
           break
         case(3):
-          this.show1stBanner = 'hidden';
-          this.show2ndBanner = 'hidden';
-          this.show3rdBanner = 'shown';
+          this.banner1stItem = 'hidden';
+          this.banner2ndItem = 'hidden';
+          this.banner3rdItem = 'shown';
           break
+        default:
+          throw new Error("Unexpected value of 'this.bannerCurrent' in bannerSwitch() function")
       }
     }
 
-    allowBannerChange: boolean = true;
-    setBannerTimeout() {
-      this.allowBannerChange = false;
-      setTimeout( ()=>{this.allowBannerChange = true} , 1200)
+    bannerAllowChange: boolean = true;
+    bannerTimeout() {
+      this.bannerAllowChange = false;
+      setTimeout( ()=>{this.bannerAllowChange = true} , 1200)
     }
 
   // #endregion

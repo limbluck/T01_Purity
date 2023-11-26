@@ -1,9 +1,12 @@
 <h1 class="page-header hidden">Home</h1>
 
-<section class="banner">
+<section class="banner"
+    appHorizontalSwipe
+    (swipeDirection)="bannerChange($event)"
+>
 
     <button class="banner__slide left"
-        (click)="slideLeft()"
+        (click)="bannerChange('left')"
     >
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
             <g>
@@ -12,7 +15,7 @@
         </svg>
     </button>
     <button class="banner__slide right"
-        (click)="slideRight()"
+        (click)="bannerChange('right')"
     >
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
             <g>
@@ -24,10 +27,10 @@
     <!-- CSS animations, JS swipe interaction (w/o animation) -->
 
     <div class="banner__item"
-        [@changeBanner]="show1stBanner"
+        [@changeBanner]="banner1stItem"
     >
         <div class="banner__container"
-            [@showBannerContainer]="show1stBanner"
+            [@showBannerContainer]="banner1stItem"
         >
             <h2 class="banner__header">Learn Without Limits</h2>
             <p class="banner__text">
@@ -38,15 +41,15 @@
             <b class="banner__button">Find Out More</b>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner1.jpg" draggable="false"
-            [@scaleBannerBackground]="show1stBanner"
+            [@scaleBannerBackground]="banner1stItem"
         >
     </div>
 
     <div class="banner__item"
-        [@changeBanner]="show2ndBanner"
+        [@changeBanner]="banner2ndItem"
     >
         <div class="banner__container"
-            [@showBannerContainer]="show2ndBanner"
+            [@showBannerContainer]="banner2ndItem"
         >
             <h2 class="banner__header">Where Knowledge Knows No Bounds</h2>
             <p class="banner__text">
@@ -59,15 +62,15 @@
             <a class="banner__button">Start Your Odyssey</a>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner2.jpg" draggable="false"
-            [@scaleBannerBackground]="show2ndBanner"
+            [@scaleBannerBackground]="banner2ndItem"
         >
     </div>
     
     <div class="banner__item"
-        [@changeBanner]="show3rdBanner"
+        [@changeBanner]="banner3rdItem"
     >
         <div class="banner__container"
-            [@showBannerContainer]="show3rdBanner"
+            [@showBannerContainer]="banner3rdItem"
         >
             <h2 class="banner__header">Nurturing Minds, Shaping Futures</h2>
             <p class="banner__text">
@@ -78,7 +81,7 @@
             <a class="banner__button">Explore Courses</a>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner3.jpg" draggable="false"
-            [@scaleBannerBackground]="show3rdBanner"
+            [@scaleBannerBackground]="banner3rdItem"
         >
     </div>
 

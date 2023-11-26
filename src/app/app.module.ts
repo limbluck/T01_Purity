@@ -13,7 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { Error404Component } from './pages/error404/error404.component';
 
 import { IfDropdownDirective } from './directives/if-dropdown.directive';
-import { SwipeDirective } from './directives/swipe.directive';
+import { HorizontalSwipeDirective } from './directives/horizontal-swipe.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { SwipeDirective } from './directives/swipe.directive';
     Error404Component,
 
     IfDropdownDirective,
-    SwipeDirective
+    HorizontalSwipeDirective
   ],
   imports: [
     BrowserModule,
