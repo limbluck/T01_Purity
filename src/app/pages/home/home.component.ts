@@ -19,11 +19,14 @@ import { Observable, fromEvent } from 'rxjs';
         style({
           zIndex: 6
         }),
-        animate('1s 0s ease-out', style({
-          zIndex: 6,
-          opacity: 0,
-          transform: 'translate(-50%, -50%) scale(1.5)'
-        }))
+        group([
+          query('@*', animateChild()),
+          animate('1s 0s ease-out', style({
+            zIndex: 6,
+            opacity: 0,
+            transform: 'translate(-50%, -50%) scale(1.5)'
+          }))
+        ])
       ])
     ]),
     trigger('showBannerContainer', [
@@ -36,10 +39,22 @@ import { Observable, fromEvent } from 'rxjs';
       ])
     ]),
     trigger('scaleBannerBackground', [
+      state('void', style({
+        transform:  'translate(-50%, -50%) scale(1)'
+      })),
+      state('hidden', style({
+        transform: 'translate(-50%, -50%) scale(1)'
+      })),
+      state('shown', style({
+        transform: 'translate(-50%, -50%) scale(1.2)'
+      })),
+      transition('void => *', [
+        animate('12s 0s linear')
+      ]),
       transition('hidden => shown', [
-        style({
-          transform: 'translate(-50%, -50%) scale(1)'
-        }),
+        animate('12s 0s linear')
+      ]),
+      transition('shown => hidden', [
         animate('12s 0s linear')
       ])
     ])
