@@ -16,7 +16,6 @@ export class IfDropdownDirective {
 
   private renderer: Renderer2 = inject(Renderer2);
   private listeners: Array<() => void> = [()=>{}];
-  private mouseOnElement!: boolean;
 
   constructor(
     private template: TemplateRef<any>,
@@ -32,42 +31,28 @@ export class IfDropdownDirective {
     if (show) {
 
       this.view.createEmbeddedView(this.template);
-      this.mouseOnElement = true;
+      let mouseOnElement: boolean = true;
 
       this.listeners.push(
-        this.renderer.listen(
-          this.template.elementRef.nativeElement.parentElement,
-          'mouseenter',
-          ()=>{
-            this.mouseOnElement = true;
-          }
-        )
+        this.renderer.listen(this.template.elementRef.nativeElement.parentElement, 'mouseenter', ()=>{
+            mouseOnElement = true;
+        })
       );
 
       this.listeners.push(
-        this.renderer.listen(
-          this.template.elementRef.nativeElement.parentElement,
-          'mouseleave',
-          ()=>{
-              this.mouseOnElement = false;
-          }
-        )
+        this.renderer.listen(this.template.elementRef.nativeElement.parentElement, 'mouseleave', ()=>{
+              mouseOnElement = false;
+        })
       );
 
       this.listeners.push(
-        this.renderer.listen(
-          document,
-          'click',
-          ()=>{
-            if (!this.mouseOnElement) {
+        this.renderer.listen(document, 'click', ()=>{
+            if (!mouseOnElement) {
               this.appIfDropdownToggle.emit();
               this.view.clear();
-              for (let i = 0; i < this.listeners.length; i++) {
-                this.listeners[i]()
-              }
+              for (let i = 0; i < this.listeners.length; i++) {this.listeners[i]()}
             }
-          }
-        )
+        })
       )
     }
   }
