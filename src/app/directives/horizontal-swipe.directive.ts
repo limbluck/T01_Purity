@@ -24,18 +24,20 @@ export class HorizontalSwipeDirective {
       activeMouseObservers.push(
         mouseMove$.subscribe( (value) => {
           
+          console.log('dsa');
+
           if (mouseStartPositionX - value.clientX > 150) {
             this.swipeDirection.emit('right');
-            for (let i = activeMouseObservers.length - 1; i > -1; i--) {
-              activeMouseObservers[i].unsubscribe();
-              activeMouseObservers.pop()
+            while (activeMouseObservers.length > 0) {
+              activeMouseObservers[0].unsubscribe();
+              activeMouseObservers.shift()
             }
           }
           else if (mouseStartPositionX - value.clientX < -150) {
             this.swipeDirection.emit('left');
-            for (let i = activeMouseObservers.length - 1; i > -1; i--) {
-              activeMouseObservers[i].unsubscribe();
-              activeMouseObservers.pop()
+            while (activeMouseObservers.length > 0) {
+              activeMouseObservers[0].unsubscribe();
+              activeMouseObservers.shift()
             }
           }
 
@@ -44,12 +46,10 @@ export class HorizontalSwipeDirective {
 
       activeMouseObservers.push(
         mouseUp$.subscribe( () => {
-          
-          for (let i = activeMouseObservers.length - 1; i > -1; i--) {
-            activeMouseObservers[i].unsubscribe();
-            activeMouseObservers.pop()
+          while (activeMouseObservers.length > 0) {
+            activeMouseObservers[0].unsubscribe();
+            activeMouseObservers.shift()
           }
-
         })
       );
       
@@ -73,16 +73,16 @@ export class HorizontalSwipeDirective {
         touchMove$.subscribe( (value) => {
           if (touchStartPositionX - value.touches[0].clientX > 150) {
             this.swipeDirection.emit('right');
-            for (let i = activeTouchObservers.length - 1; i > -1; i--) {
-              activeTouchObservers[i].unsubscribe();
-              activeTouchObservers.pop()
+            while (activeTouchObservers.length > 0) {
+              activeTouchObservers[0].unsubscribe();
+              activeTouchObservers.shift()
             }
           }
           else if (touchStartPositionX - value.touches[0].clientX < -150) {
             this.swipeDirection.emit('left');
-            for (let i = activeTouchObservers.length - 1; i > -1; i--) {
-              activeTouchObservers[i].unsubscribe();
-              activeTouchObservers.pop()
+            while (activeTouchObservers.length > 0) {
+              activeTouchObservers[0].unsubscribe();
+              activeTouchObservers.shift()
             }
           }
         })
@@ -90,18 +90,18 @@ export class HorizontalSwipeDirective {
 
       activeTouchObservers.push(
         touchUp$.subscribe( () => {
-          for (let i = activeTouchObservers.length - 1; i > -1; i--) {
-            activeTouchObservers[i].unsubscribe();
-            activeTouchObservers.pop()
+          while (activeTouchObservers.length > 0) {
+            activeTouchObservers[0].unsubscribe();
+            activeTouchObservers.shift()
           }
         })
       );
 
       activeTouchObservers.push(
         touchCancel$.subscribe( () => {
-          for (let i = activeTouchObservers.length - 1; i > -1; i--) {
-            activeTouchObservers[i].unsubscribe();
-            activeTouchObservers.pop()
+          while (activeTouchObservers.length > 0) {
+            activeTouchObservers[0].unsubscribe();
+            activeTouchObservers.shift()
           }
         })
       );
