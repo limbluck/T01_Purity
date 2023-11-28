@@ -1,10 +1,8 @@
-<div class="wrapper">
-    
     <app-header class="header"
         [class.sidebar-active]="showSidebar"
         (toggleSidebar)="toggleSidebar()"
     ></app-header>
-    
+
     <div class="sidebar"
         [class.sidebar-active]="showSidebar"
     >
@@ -12,11 +10,11 @@
             [class.sidebar-active]="showSidebar"
         ></app-sidebar>
     </div>
-    
-    <div class="page"
+
+    <div class="header-placeholder"></div>
+
+    <div class="wrapper"
         [class.sidebar-active]="showSidebar"
     >
         <router-outlet></router-outlet>
     </div>
-
-</div>
