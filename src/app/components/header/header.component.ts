@@ -8,7 +8,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class HeaderComponent {
 
-    @Output() toggleSidebar: EventEmitter<void> = new EventEmitter<void>();
+    @Output() toggleSidebar: EventEmitter<never> = new EventEmitter<never>();
 
     showSearchDropdown: boolean = false;
     toggleSearchDropdown(): void {
