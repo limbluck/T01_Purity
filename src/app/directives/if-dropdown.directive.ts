@@ -14,7 +14,7 @@ export class IfDropdownDirective {
  * @param appIfDropdownToggle - A function from the parent component that toggles the visibility of the dropdown element.
  */
 
-  private renderer: Renderer2 = inject(Renderer2);
+  private readonly renderer: Renderer2 = inject(Renderer2);
   private listeners: Array<() => void> = [()=>{}];
 
   constructor(
