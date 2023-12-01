@@ -5,6 +5,28 @@ import { Observable, Subscription, fromEvent } from "rxjs";
   selector: '[appHorizontalSwipe]'
 })
 export class HorizontalSwipeDirective {
+/**
+ * Description:
+ * This directive enables the detection of horizontal swipe gestures over an element.It emits a 'swipeDirection'
+ * event with the direction of the swipe ('left' or 'right') when a significant horizontal swipe is detected.
+ *
+ * @usageNotes
+ * To use this directive, apply it to the desired HTML element.
+ * You can capture the swipe direction by subscribing to the 'swipeDirection' event in the parent component.
+ *
+ * @example
+ * ```html
+ * <div appHorizontalSwipe (swipeDirection)="onSwipe($event)">
+ *   <!-- Your content here -->
+ * </div>
+ * ```
+ *
+ * @param {Output<string>} swipeDirection - Emits a string representing the swipe direction ('left' or 'right').
+ *
+ * @remarks
+ * The directive supports both mouse and touch events.
+ * A horizontal swipe is considered significant when the displacement along the x-axis is greater than 150 pixels.
+ */
 
   @Output() swipeDirection = new EventEmitter<string>();
 
