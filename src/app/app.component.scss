@@ -24,7 +24,7 @@
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1400px) {
     .header {
         z-index: 40;
 
@@ -73,7 +73,7 @@
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1400px) {
     .sidebar {
         margin-top: clamp(3.5em, calc(20vw * 0.3), 4.5em);
     }
@@ -98,7 +98,7 @@
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1400px) {
     .wrapper {
         &.sidebar-active {
             padding-left: 0;
