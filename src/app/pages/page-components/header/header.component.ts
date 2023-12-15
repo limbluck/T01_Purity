@@ -1,5 +1,5 @@
 import { Component, inject, EventEmitter, Output } from '@angular/core';
-import { AuthorizationService } from '../../services/authorization.service';
+import { AuthorizationService } from '../../../services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -40,6 +40,7 @@ export class HeaderComponent {
 
     logOut(): void {
       this.AuthorizationService.logOut();
+      this.showProfileDropdown = false;  // Fix of profile dropdown visibility
     };
 
   // #endregion
