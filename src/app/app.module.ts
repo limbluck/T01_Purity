@@ -11,8 +11,9 @@ import { SidebarComponent } from './pages/page-components/sidebar/sidebar.compon
 
 import { HomeComponent } from './pages/home/home.component';
 
-import { IfDropdownDirective } from './directives/if-dropdown.directive';
-import { HorizontalSwipeDirective } from './directives/horizontal-swipe.directive';
+import { DropdownDirective } from './directives/dropdown.directive';
+import { SwipeDetectionDirective } from './directives/swipe-detection.directive';
+import { CarouselDirective } from './directives/carousel.directive';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { HorizontalSwipeDirective } from './directives/horizontal-swipe.directiv
 
     HomeComponent,
 
-    IfDropdownDirective,
-    HorizontalSwipeDirective
+    DropdownDirective,
+    SwipeDetectionDirective,
+    CarouselDirective
   ],
   imports: [
     BrowserModule,
