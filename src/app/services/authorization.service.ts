@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 
-interface Authorization {
-  // HeaderComponent
-    authorized: boolean;
-    logIn(): void;
-    logOut(): void;
-}
-
+/**
+ * Placeholder to handle authorization toggles
+ */
 @Injectable({
   providedIn: 'root'
 })
 
-export class AuthorizationService implements Authorization{
+export class AuthorizationService {
 
   authorized: boolean = false;
 
