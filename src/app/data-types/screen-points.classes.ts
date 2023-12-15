@@ -1,11 +1,24 @@
+
+/**
+ * @classdesc Class designed for better handling of ScreenDistance class creation
+ */
 export class ScreenPosition {
-    constructor(positionX: number, positionY: number) {
-        this.position = {x: positionX, y: positionY}
-    }
-    
     readonly position: {readonly x: number, readonly y: number};
+    constructor(positionX: number, positionY: number) {this.position = {x: positionX, y: positionY}}
 }
 
+/**
+ * @classdesc Class designed to calculate and store distance between two screen positions
+ * 
+ * @constructor - Pass start position of ScreenPosition class
+ * 
+ * @param start: ScreenPosition
+ *    Start position of a screen distance (Set by constructor)
+ * @param end: ScreenPosition
+ *    End position of a screen distance. (Set and get)
+ * @param distance: {x: number, y: number}
+ *    Distance between the start and the end positions. (Get only)
+ */
 export class ScreenDistance {
     constructor(startPosition: ScreenPosition) {
         this.start = startPosition;

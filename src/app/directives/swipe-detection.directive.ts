@@ -3,28 +3,55 @@ import { Observable, Subject, Subscription, fromEvent } from 'rxjs';
 
 import { ScreenPosition, ScreenDistance } from '../data-types/screen-points.classes';
 
+/**
+ * @classdesc
+ *   Directive to get swipe distance on element.
+ * 
+ * @constructor
+ *   RxJs Observers to detect swipes from mouse and touch events
+ * @method ngOnInit()
+ *   RxJs Observer to stop swipe detection by swipeStop Subject.
+ * 
+ * @param {Input: Subject<undefined>} swipeStop
+ *   RxJs Subject<undefined> that can stop swipe detection.
+ * @param {Output: EventEmitter<never>} swipeStart
+ *   Event to emit when swipe starts.
+ * @param {Output: EventEmitter<never>} swipeEnd
+ *   Event to emit when swipe ends.
+ * @param {Output: EventEmitter<{x: number, y: number}>} swipeMove
+ *   Event to pass swipe distance.
+ * 
+ * @usageNotes
+ * To use this swipe detection directive, apply the 'appSwipeDetection' attribute to the HTML element
+ * that should detect swipe gestures.
+ *
+ * @example
+ *   ```html
+ *   <div
+ *     appSwipeDetection
+ *       [swipeStop]="stopSwipeSubject"
+ *       (swipeStart)="handleSwipeStart()"
+ *       (swipeEnd)="handleSwipeEnd()"
+ *       (swipeMove)="handleSwipeMove($event)"
+ *   >
+ *     <!-- Swipe detection content -->
+ *   </div>
+ *   ```
+ */
 @Directive({
   selector: '[appSwipeDetection]'
 })
 export class SwipeDetectionDirective {
-  
-  @Input()
-  swipeStop!: Subject<undefined>;
-
-  @Output() private readonly swipeStart = new EventEmitter<never>();
-  @Output() private readonly swipeEnd = new EventEmitter<never>();
-  @Output() private readonly swipeMove = new EventEmitter<{x: number, y: number}>();
 
   private readonly activeMouseObservers: Subscription[] = [];
   private readonly activeTouchObservers: Subscription[] = [];
-  
   constructor(host: ElementRef) {
 
     // #region Mouse events 
 
-      const mouseDown$: Observable<MouseEvent> = fromEvent(host.nativeElement, 'mousedown');
-      const mouseMove$: Observable<MouseEvent> = fromEvent(host.nativeElement, 'mousemove');
-      const mouseUp$: Observable<MouseEvent> = fromEvent(host.nativeElement, 'mouseup');
+      const mouseDown$: Observable<MouseEvent> = fromEvent<MouseEvent>(host.nativeElement, 'mousedown');
+      const mouseMove$: Observable<MouseEvent> = fromEvent<MouseEvent>(window, 'mousemove');
+      const mouseUp$: Observable<Event> = fromEvent<MouseEvent>(window, 'mouseup');
 
       mouseDown$.subscribe( (value) =>  {
         
@@ -100,22 +127,24 @@ export class SwipeDetectionDirective {
   }
 
   ngOnInit() {
-    this.swipeStop.subscribe(() => {
-      while (this.activeMouseObservers.length > 0) {
-        this.activeMouseObservers[0].unsubscribe();
-        this.activeMouseObservers.shift()
-      };
-      while (this.activeTouchObservers.length > 0) {
-        this.activeTouchObservers[0].unsubscribe();
-        this.activeTouchObservers.shift()
-      };
-      this.swipeEnd.emit();
-    })    
+    if (this.swipeStop) {
+      this.swipeStop.subscribe(() => {
+        while (this.activeMouseObservers.length > 0) {
+          this.activeMouseObservers[0].unsubscribe();
+          this.activeMouseObservers.shift()
+        };
+        while (this.activeTouchObservers.length > 0) {
+          this.activeTouchObservers[0].unsubscribe();
+          this.activeTouchObservers.shift()
+        };
+        this.swipeEnd.emit();
+      })    
+    }
   }
 
-  
+  @Input() swipeStop?: Subject<undefined>;
 
-  
-
-  
+  @Output() private readonly swipeStart = new EventEmitter<never>();
+  @Output() private readonly swipeEnd = new EventEmitter<never>();
+  @Output() private readonly swipeMove = new EventEmitter<{x: number, y: number}>();
 }
