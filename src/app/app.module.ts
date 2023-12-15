@@ -10,7 +10,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 import { HomeComponent } from './pages/home/home.component';
-import { Error404Component } from './pages/error404/error404.component';
 
 import { IfDropdownDirective } from './directives/if-dropdown.directive';
 import { HorizontalSwipeDirective } from './directives/horizontal-swipe.directive';
@@ -23,7 +22,6 @@ import { HorizontalSwipeDirective } from './directives/horizontal-swipe.directiv
     SidebarComponent,
 
     HomeComponent,
-    Error404Component,
 
     IfDropdownDirective,
     HorizontalSwipeDirective
