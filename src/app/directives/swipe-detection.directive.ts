@@ -12,13 +12,13 @@ import { ScreenPosition, ScreenDistance } from '../data-types/screen-points.clas
  * @method ngOnInit()
  *   RxJs Observer to stop swipe detection by swipeStop Subject.
  * 
- * @param {Input: Subject<undefined>} swipeStop
+ * @Input swipeStop: Subject<undefined>
  *   RxJs Subject<undefined> that can stop swipe detection.
- * @param {Output: EventEmitter<never>} swipeStart
+ * @Output swipeStart: EventEmitter<never>
  *   Event to emit when swipe starts.
- * @param {Output: EventEmitter<never>} swipeEnd
+ * @Output swipeEnd: EventEmitter<never>
  *   Event to emit when swipe ends.
- * @param {Output: EventEmitter<{x: number, y: number}>} swipeMove
+ * @Output swipeMove: EventEmitter<{x: number, y: number}>
  *   Event to pass swipe distance.
  * 
  * @usageNotes

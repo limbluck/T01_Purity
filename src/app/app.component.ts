@@ -1,5 +1,15 @@
 import { Component } from '@angular/core';
 
+/**
+ * @classdesc
+ *   Component to define the page layout
+ * 
+ * @section Sidebar controls
+ *   @param showSidebar: boolean
+ *     Sidebar status (true - visible, false - hidden)
+ *   @method toggleSidebar(): void
+ *     Toggle sidebar status
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +19,7 @@ export class AppComponent {
 
   showSidebar: boolean = false;
 
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
 }

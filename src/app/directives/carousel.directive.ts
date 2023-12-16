@@ -11,13 +11,13 @@ import { Observable, fromEvent } from "rxjs";
  * @method ngOnInit()
  *   Get and set width properties: by onInit() AND by Observer(window resize)
  * 
- * @param {Input: number} carouselSetPage
+ * @Input carouselSetPage: number
  *   Set the current page of the carousel.
- * @param {Output: EventEmitter<number>} carouselCurrentPage
+ * @Output carouselCurrentPage: EventEmitter<number>
  *   Event to output the current page number.
- * @param {Input: number} carouselSwipeDistance
+ * @Input carouselSwipeDistance: number
  *   Set the swipe distance to handle carousel navigation.
- * @param {Input: boolean} carouselSwipeActive
+ * @Input carouselSwipeActive: boolean
  *   Set the swipe status to handle swipe end.
  * 
  * @usageNotes

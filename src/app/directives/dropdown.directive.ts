@@ -7,9 +7,9 @@ import { Directive, Input, Output, Renderer2, inject, EventEmitter, ElementRef} 
  * @constructor
  *   Inject necessary services.
  * 
- * @param {Input: boolean} dropdownStatus
+ * @Input dropdownStatus: boolean
  *   A boolean value from the parent component determining the visibility of the dropdown.
- * @param {Output: EventEmitter<void>} dropdownToggle
+ * @Output dropdownToggle: EventEmitter<void>
  *   An event emitted when the dropdown should be hiden by click outside of an element.
  *   Listen to this event by the dropdown toggle function.
  * 

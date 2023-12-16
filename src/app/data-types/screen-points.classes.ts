@@ -1,6 +1,10 @@
 
 /**
- * @classdesc Class designed for better handling of ScreenDistance class creation
+ * @classdesc
+ *   Class designed for better handling of ScreenDistance class creation
+ * 
+ * @constructor
+ *   Takes start X and Y positions
  */
 export class ScreenPosition {
     readonly position: {readonly x: number, readonly y: number};
@@ -8,14 +12,18 @@ export class ScreenPosition {
 }
 
 /**
- * @classdesc Class designed to calculate and store distance between two screen positions
+ * @classdesc
+ *   Class designed to calculate and store distance between two screen positions
  * 
- * @constructor - Pass start position of ScreenPosition class
+ * @constructor
+ *   Takes start position in ScreenPosition class form
+ *   Sets end positions with the same coordintaes
  * 
  * @param start: ScreenPosition
  *    Start position of a screen distance (Set by constructor)
  * @param end: ScreenPosition
  *    End position of a screen distance. (Set and get)
+ *    Distance calculation happens here
  * @param distance: {x: number, y: number}
  *    Distance between the start and the end positions. (Get only)
  */
