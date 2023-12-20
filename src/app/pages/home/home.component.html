@@ -1,12 +1,13 @@
 <h1 class="page-header hidden">Home</h1>
 
 <section class="banner"
-    appHorizontalSwipe
-    (swipeDirection)="bannerChange($event)"
+    appSwipeDetection
+        (swipeMove)="bannerSwipe($event)"
+        [swipeStop]="bannerSwipeCancel"
 >
 
     <button class="banner__slide left"
-        (click)="bannerChange('left')"
+        (click)="bannerPervious()"
     >
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
             <g>
@@ -15,7 +16,7 @@
         </svg>
     </button>
     <button class="banner__slide right"
-        (click)="bannerChange('right')"
+        (click)="bannerNext()"
     >
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
             <g>
@@ -25,10 +26,10 @@
     </button>
 
     <div class="banner__item"
-        [@changeBanner]="banner1stItem"
+        [@bannerElement]="banner1stItemStatus"
     >
         <div class="banner__container"
-            [@showBannerContainer]="banner1stItem"
+            [@bannerContainer]="banner1stItemStatus"
         >
             <h2 class="banner__header">Learn Without Limits</h2>
             <p class="banner__text">
@@ -39,15 +40,15 @@
             <b class="banner__button">Find Out More</b>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner1.jpg" draggable="false"
-            [@scaleBannerBackground]="banner1stItem"
+            [@bannerBackground]="banner1stItemStatus"
         >
     </div>
 
     <div class="banner__item"
-        [@changeBanner]="banner2ndItem"
+        [@bannerElement]="banner2ndItemStatus"
     >
         <div class="banner__container"
-            [@showBannerContainer]="banner2ndItem"
+            [@bannerContainer]="banner2ndItemStatus"
         >
             <h2 class="banner__header">Where Knowledge Knows No Bounds</h2>
             <p class="banner__text">
@@ -60,15 +61,15 @@
             <a class="banner__button">Start Your Odyssey</a>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner2.jpg" draggable="false"
-            [@scaleBannerBackground]="banner2ndItem"
+            [@bannerBackground]="banner2ndItemStatus"
         >
     </div>
     
     <div class="banner__item"
-        [@changeBanner]="banner3rdItem"
+        [@bannerElement]="banner3rdItemStatus"
     >
         <div class="banner__container"
-            [@showBannerContainer]="banner3rdItem"
+            [@bannerContainer]="banner3rdItemStatus"
         >
             <h2 class="banner__header">Nurturing Minds, Shaping Futures</h2>
             <p class="banner__text">
@@ -79,13 +80,13 @@
             <a class="banner__button">Explore Courses</a>
         </div>
         <img class="banner__background" src="../../../../assets/banner/banner3.jpg" draggable="false"
-            [@scaleBannerBackground]="banner3rdItem"
+            [@bannerBackground]="banner3rdItemStatus"
         >
     </div>
 
 </section>
 
-<section class="section background-transparent">
+<section class="section cards background-transparent">
     <div class="section__container">
 
         <h2 class="section__header">Follow Your Dreams</h2>
@@ -105,7 +106,7 @@
                             L45.2,9.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L21.3,42.5C20.7,43.2,19.7,43.2,19.1,42.5z"/>
                     </g>
                 </svg>
-                <h3 class="card__header">DISCOVER YOUR PASSION</h3>
+                <h3 class="card__title">DISCOVER YOUR PASSION</h3>
                 <p class="card__text">Explore courses tailored to your interests. Uncover new passions, and embark on a learning journey that aligns with your dreams.</p>
                 <a class="card__button">Passion Unleashed</a>
             </div>
@@ -117,7 +118,7 @@
                             L45.2,9.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L21.3,42.5C20.7,43.2,19.7,43.2,19.1,42.5z"/>
                     </g>
                 </svg>
-                <h3 class="card__header">ACHIEVE YOUR AMBITIONS</h3>
+                <h3 class="card__title">ACHIEVE YOUR AMBITIONS</h3>
                 <p class="card__text">Turn dreams into reality with our comprehensive courses. Equip yourself with the skills needed to achieve your long-held aspirations.</p>
                 <a class="card__button">Ambitions Realized</a>
             </div>
@@ -129,7 +130,7 @@
                             L45.2,9.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L21.3,42.5C20.7,43.2,19.7,43.2,19.1,42.5z"/>
                     </g>
                 </svg>
-                <h3 class="card__header">SHAPE YOUR FUTURE</h3>
+                <h3 class="card__title">SHAPE YOUR FUTURE</h3>
                 <p class="card__text">Craft a future that aligns with your dreams. Our courses provide the knowledge and tools to shape the successful tomorrow you envision.</p>
                 <a class="card__button">Future in Focus</a>
             </div>
@@ -139,7 +140,7 @@
     </div>
 </section>
 
-<section class="section background-svg">
+<section class="section courses background-svg">
     <div class="section__container">
 
         <h2 class="section__header">Our Featured Courses</h2>
@@ -153,20 +154,25 @@
         <div class="section__courses">
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -175,25 +181,31 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -202,25 +214,31 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -229,25 +247,31 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -256,25 +280,31 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -283,25 +313,31 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
             <div class="course">
-                <div class="course__price">FREE</div>
-                <img class="course__image" src="../../../assets/courses/course1.jpg">
-                <a class="course__header">Morbi Porta Orci Et Augue</a>
-                <p class="course__text">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
-                <div class="course__footer">
-                    <a class="course__category">
+                <a class="course__image">
+                    <div class="course__price">FREE</div>
+                    <img src="../../../assets/course.jpg" draggable="false">
+                </a>
+                <div class="course__header-container">
+                    <a class="course__title">Morbi Porta Orci Et Augue</a>
+                    <p class="course__about">Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum...</p>
+                </div>
+                <div class="course__footer-container">
+                    <a class="course__info category">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64">
                             <path d="M51.48,15.46A4.52,4.52,0,0,1,56,20V51a4.52,4.52,0,0,1-4.52,4.52h-47A4.52,4.52,0,0,1,0,51H0V13A4.52,4.52,0,0,1,4.52,8.52H16c3.82,0,4.23,1.14,6.74,4.45,2.07,2.74,7.11,2.49,10.39,2.49Z"/>
                             <path d="M51.48,18.12H9.24a4.52,4.52,0,0,0-4.52,4.52v2.84L9.19,19H51.54L56,25.49V22.64A4.52,4.52,0,0,0,51.48,18.12Z"/>
                             <path d="M4.57,55.48H51.48A4.52,4.52,0,0,0,56,51V23.48A4.52,4.52,0,0,0,51.48,19H9.25a4.52,4.52,0,0,0-4.52,4.52V51a4.65,4.65,0,0,1-.06.72,2.33,2.33,0,0,1-4.6,0A4.5,4.5,0,0,0,4.57,55.48Z"/>
                         </svg>
                         Design
+                        <div class="course__add-info">Category</div>
                     </a>
-                    <div class="course__enrolled">
+                    <span class="course__info enrolled">
                         <svg class="course__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <g>
                                 <path d="M15.9,28c-1.4-2.1-2.1-4.5-2.1-7.2c0-4.6,1.9-8.4,4.9-10.7c-1-1.8-3-3.1-5.6-3.1c-4.4,0-6.9,3.6-6.9,7.7c0,2.2,0.7,4.1,2.2,5.4c0.8,0.8,1.5,1.8,1.5,2.8S9.5,24.9,7,26c-3.6,1.6-6.9,3.8-7,7.1C0.1,35.3,1.5,37,3.6,37h3.3c0.5,0,1-0.3,1.3-0.8c1.6-2.9,4.6-4.7,7.1-6C16.2,29.8,16.4,28.7,15.9,28z"/>
@@ -310,12 +346,431 @@
                             </g>
                         </svg>
                         4
-                    </div>
+                        <div class="course__add-info">Enrolled</div>
+                    </span>
                 </div>
             </div>
 
         </div>
 
+        <a class="section__button">View All Courses</a>
+
     </div>
 </section>
 
+<section class="banner small">
+
+    <h2 class="banner__header">Become A Student Today!</h2>
+
+    <p class="banner__text">
+        Embrace your educational journey with us.
+        <br>
+        Join today and unlock a world of knowledge and possibilities.
+    </p>
+
+    <a class="banner__button">Register Now</a>
+
+</section>
+
+<section class="section teachers background-white">
+    <div class="section__container">
+
+        <h2 class="section__header">Our Awesome Teachers</h2>
+        <div class="section__separator"></div>
+        <p class="section__text">
+            Sed hendrerit quam sed ante euismod posu. Mauris ut elementum ante.
+            <br>
+            Vestibuel suscipit convallis purus mattis magna sapien, euismod convallis sagittis quis euismod posu.
+        </p>
+
+        <div class="section__carousel teachers"
+            appSwipeDetection
+                (swipeStart)="teachersSwipeStart()"
+                (swipeMove)="teachersSwipeMove($event)"
+                (swipeEnd)="teachersSwipeEnd()"
+        >
+
+            <button class="section__slide left"
+                (click)="teachersPageDecrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M34.2,47.7L13.4,27.2c-0.6-0.6-0.6-1.6,0-2.2L34.2,4.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L22.1,25c-0.6,0.6-0.6,1.6,0,2.2l16.3,16.1c0.6,0.6,0.6,1.6,0,2.2l-2.2,2.2C35.7,48.2,34.8,48.2,34.2,47.7z"/>
+                    </g>
+                </svg>
+            </button>
+            <button class="section__slide right"
+                (click)="teachersPageIncrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M17.9,4.4l20.7,20.5c0.6,0.6,0.6,1.6,0,2.2L17.9,47.6c-0.6,0.6-1.6,0.6-2.2,0l-2.2-2.2c-0.6-0.6-0.6-1.6,0-2.2l16.3-16.1c0.6-0.6,0.6-1.6,0-2.2L13.6,8.8c-0.6-0.6-0.6-1.6,0-2.2l2.2-2.2C16.4,3.9,17.3,3.9,17.9,4.4z"/>
+                    </g>
+                </svg>
+            </button>
+
+            <div class="section__carousel-container teachers"
+                appCarousel
+                    [carouselSetPage]="teachersPage"
+                    (carouselCurrentPage)="teachersRecievePage($event)"
+                    [carouselSwipeDistance]="teachersSwipeDistance"
+                    [carouselSwipeActive]="teachersSwipeActive"
+            >
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher1.jpg" draggable="false">
+                    <span class="teacher__name">Peter Stevenson</span>
+                    <span class="teacher__subject">Designer and CEO</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher2.jpg" draggable="false">
+                    <span class="teacher__name">Alicia Patrick</span>
+                    <span class="teacher__subject">Public Relations</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher3.jpg" draggable="false">
+                    <span class="teacher__name">Anna Smith</span>
+                    <span class="teacher__subject">Marketing and Sales</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher4.jpg" draggable="false">
+                    <span class="teacher__name">Thomas Jones</span>
+                    <span class="teacher__subject">Front-End Developer</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher5.jpg" draggable="false">
+                    <span class="teacher__name">Gloria Angels</span>
+                    <span class="teacher__subject">Designer</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher6.jpg" draggable="false">
+                    <span class="teacher__name">Martin Philips</span>
+                    <span class="teacher__subject">Front-End Developer</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher7.jpg" draggable="false">
+                    <span class="teacher__name">Michael Lorens</span>
+                    <span class="teacher__subject">Marketing & Sales</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+                <div class="teacher">
+                    <img class="teacher__photo" src="../../../assets/teachers/teacher8.jpg" draggable="false">
+                    <span class="teacher__name">William Anderson</span>
+                    <span class="teacher__subject">Public Relations</span>
+                    <span class="teacher__about">Lorem ipsum dolor sit amet, conse adipiscing elit maecenas mauris orci.</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section__pages">
+            <button (click)="teachersSetPage(1)" [class.active]="teachersPageRecieved === 1"></button>
+            <button (click)="teachersSetPage(2)" [class.active]="teachersPageRecieved === 2"></button>
+            <button (click)="teachersSetPage(3)" [class.active]="teachersPageRecieved === 3"></button>
+            <button (click)="teachersSetPage(4)" [class.active]="teachersPageRecieved === 4"></button>
+            <button (click)="teachersSetPage(5)" [class.active]="teachersPageRecieved === 5"></button>
+            <button (click)="teachersSetPage(6)" [class.active]="teachersPageRecieved === 6"></button>
+            <button (click)="teachersSetPage(7)" [class.active]="teachersPageRecieved === 7"></button>
+            <button (click)="teachersSetPage(8)" [class.active]="teachersPageRecieved === 8"></button>
+        </div>
+
+    </div>
+</section>
+
+<section class="section reviews background-transparent">
+    <div class="section__container">
+
+        <h2 class="section__header">What Our Customers Say</h2>
+        <div class="section__separator transparent"></div>
+
+        <div class="section__carousel reviews"
+            appSwipeDetection
+                    (swipeStart)="reviewsSwipeStart()"
+                    (swipeMove)="reviewsSwipeMove($event)"
+                    (swipeEnd)="reviewsSwipeEnd()"
+        >
+            <div class="section__carousel-container reviews"
+                appCarousel
+                    [carouselSetPage]="reviewsPage"
+                    (carouselCurrentPage)="reviewsRecievePage($event)"
+                    [carouselSwipeDistance]="reviewsSwipeDistance"
+                    [carouselSwipeActive]="reviewsSwipeActive"
+            >
+
+                <div class="review">
+                    <p class="review__text">
+                        Lorem ipsum dolor sit amet, conse adipiscing elit. Maecenas mauris orci, pellentesque at vestibulum quis,
+                        <br>
+                        porttitor eget turpis. Morbi porta orci et augue sollicitudin cursus ut eget ligula.
+                        <br>
+                        Etiam eu sapien at purus ultricies tempor.
+                    </p>
+                    <img class="review__photo" src="../../../assets/reviews/review1.jpg" draggable="false">
+                    <p class="review__name">Peter Stevenson</p>
+                    <p class="review__subject">Designer and CEO</p>
+                </div>
+
+                <div class="review">
+                    <p class="review__text">
+                        Sed hendrerit quam sed ante euismod posu. Mauris ut elementum ante. Vestibuel suscipit convallis purus
+                        <br>
+                        mattis magna sapien, euismod convallis sagittis quis euismod posu. Vivamus id mi
+                        <br>
+                        non quam congue venenatis et at lorem vitae suscipit.
+                    </p>
+                    <img class="review__photo" src="../../../assets/reviews/review2.jpg" draggable="false">
+                    <p class="review__name">Andy Worner</p>
+                    <p class="review__subject">Public Relations</p>
+                </div>
+
+                <div class="review">
+                    <p class="review__text">
+                        Mauris ut elementum ante. Vivamus id mi non quam congue venenatis et at lorem. Ut ullamcorper odio id
+                        <br>
+                        metus eleif tincidunt consequat vitae suscipit magna. Proin ante arcu, aliquam nec
+                        <br>
+                        rhon sit amet, consequat vitae odio id suscipit magna.
+                    </p>
+                    <img class="review__photo" src="../../../assets/reviews/review3.jpg" draggable="false">
+                    <p class="review__name">John Evens</p>
+                    <p class="review__subject">Marketing and Sales</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section__pages">
+            <button (click)="reviewsSetPage(1)" [class.active]="reviewsPageRecieved === 1"></button>
+            <button (click)="reviewsSetPage(2)" [class.active]="reviewsPageRecieved === 2"></button>
+            <button (click)="reviewsSetPage(3)" [class.active]="reviewsPageRecieved === 3"></button>
+            </div>
+
+    </div>
+</section>
+
+<section class="section blogs background-svg">
+    <div class="section__container">
+
+        <h2 class="section__header">Our Latest Blogs</h2>
+        <div class="section__separator"></div>
+        <p class="section__text">
+            Sed hendrerit quam sed ante euismod posu. Mauris ut elementum ante.
+            <br>
+            Vestibuel suscipit convallis purus mattis magna sapien, euismod convallis sagittis quis euismod posu.
+        </p>
+
+        <div class="section__carousel blogs"
+            appSwipeDetection
+                (swipeStart)="blogsSwipeStart()"
+                (swipeMove)="blogsSwipeMove($event)"
+                (swipeEnd)="blogsSwipeEnd()"
+        >
+
+            <button class="section__slide left"
+                (click)="blogsPageDecrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M34.2,47.7L13.4,27.2c-0.6-0.6-0.6-1.6,0-2.2L34.2,4.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L22.1,25c-0.6,0.6-0.6,1.6,0,2.2l16.3,16.1c0.6,0.6,0.6,1.6,0,2.2l-2.2,2.2C35.7,48.2,34.8,48.2,34.2,47.7z"/>
+                    </g>
+                </svg>
+            </button>
+            <button class="section__slide right"
+                (click)="blogsPageIncrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M17.9,4.4l20.7,20.5c0.6,0.6,0.6,1.6,0,2.2L17.9,47.6c-0.6,0.6-1.6,0.6-2.2,0l-2.2-2.2c-0.6-0.6-0.6-1.6,0-2.2l16.3-16.1c0.6-0.6,0.6-1.6,0-2.2L13.6,8.8c-0.6-0.6-0.6-1.6,0-2.2l2.2-2.2C16.4,3.9,17.3,3.9,17.9,4.4z"/>
+                    </g>
+                </svg>
+            </button>
+
+            <div class="section__carousel-container blogs"
+                appCarousel
+                    [carouselSetPage]="blogsPage"
+                    (carouselCurrentPage)="blogsRecievePage($event)"
+                    [carouselSwipeDistance]="blogsSwipeDistance"
+                    [carouselSwipeActive]="blogsSwipeActive"
+            >
+
+                <div class="blog">
+                    <a class="blog__title">Phasellus eget augue est fring</a>
+                    <div class="blog__info-container">
+                        <div class="blog__info author">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <path d="M50,43v2.2c0,2.6-2.2,4.8-4.8,4.8H6.8C4.2,50,2,47.8,2,45.2V43c0-5.8,6.8-9.4,13.2-12.2c0.2-0.1,0.4-0.2,0.6-0.3c0.5-0.2,1-0.2,1.5,0.1c2.6,1.7,5.5,2.6,8.6,2.6s6.1-1,8.6-2.6c0.5-0.3,1-0.3,1.5-0.1c0.2,0.1,0.4,0.2,0.6,0.3C43.2,33.6,50,37.1,50,43z M26,2c6.6,0,11.9,5.9,11.9,13.2S32.6,28.4,26,28.4s-11.9-5.9-11.9-13.2S19.4,2,26,2z"/>
+                            </svg>
+                            <span>John Smith</span>
+                            <div class="blog__add-info">Author</div>
+                        </div>
+                        <div class="blog__info date">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <g>
+                                    <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20zM19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M29,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M29,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M39,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M39,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z"/>
+                                    <path d="M44,7h-4h-1V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2H19V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2h-1H8c-2.2,0-4,1.8-4,4v2.5C4,14.3,4.7,15,5.5,15h41c0.8,0,1.5-0.7,1.5-1.5V11C48,8.8,46.2,7,44,7z"/>
+                                </g>
+                            </svg>
+                            <span>01/27/21</span>
+                            <div class="blog__add-info">Created</div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="blog">
+                    <a class="blog__title">Phasellus eget augue est fring</a>
+                    <div class="blog__info-container">
+                        <div class="blog__info author">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <path d="M50,43v2.2c0,2.6-2.2,4.8-4.8,4.8H6.8C4.2,50,2,47.8,2,45.2V43c0-5.8,6.8-9.4,13.2-12.2c0.2-0.1,0.4-0.2,0.6-0.3c0.5-0.2,1-0.2,1.5,0.1c2.6,1.7,5.5,2.6,8.6,2.6s6.1-1,8.6-2.6c0.5-0.3,1-0.3,1.5-0.1c0.2,0.1,0.4,0.2,0.6,0.3C43.2,33.6,50,37.1,50,43z M26,2c6.6,0,11.9,5.9,11.9,13.2S32.6,28.4,26,28.4s-11.9-5.9-11.9-13.2S19.4,2,26,2z"/>
+                            </svg>
+                            <span>John Smith</span>
+                            <div class="blog__add-info">Author</div>
+                        </div>
+                        <div class="blog__info date">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <g>
+                                    <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20zM19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M29,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M29,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M39,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M39,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z"/>
+                                    <path d="M44,7h-4h-1V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2H19V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2h-1H8c-2.2,0-4,1.8-4,4v2.5C4,14.3,4.7,15,5.5,15h41c0.8,0,1.5-0.7,1.5-1.5V11C48,8.8,46.2,7,44,7z"/>
+                                </g>
+                            </svg>
+                            <span>01/27/21</span>
+                            <div class="blog__add-info">Created</div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="blog">
+                    <a class="blog__title">Phasellus eget augue est fring</a>
+                    <div class="blog__info-container">
+                        <div class="blog__info author">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <path d="M50,43v2.2c0,2.6-2.2,4.8-4.8,4.8H6.8C4.2,50,2,47.8,2,45.2V43c0-5.8,6.8-9.4,13.2-12.2c0.2-0.1,0.4-0.2,0.6-0.3c0.5-0.2,1-0.2,1.5,0.1c2.6,1.7,5.5,2.6,8.6,2.6s6.1-1,8.6-2.6c0.5-0.3,1-0.3,1.5-0.1c0.2,0.1,0.4,0.2,0.6,0.3C43.2,33.6,50,37.1,50,43z M26,2c6.6,0,11.9,5.9,11.9,13.2S32.6,28.4,26,28.4s-11.9-5.9-11.9-13.2S19.4,2,26,2z"/>
+                            </svg>
+                            <span>John Smith</span>
+                            <div class="blog__add-info">Author</div>
+                        </div>
+                        <div class="blog__info date">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <g>
+                                    <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20zM19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M29,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M29,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M39,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M39,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z"/>
+                                    <path d="M44,7h-4h-1V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2H19V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2h-1H8c-2.2,0-4,1.8-4,4v2.5C4,14.3,4.7,15,5.5,15h41c0.8,0,1.5-0.7,1.5-1.5V11C48,8.8,46.2,7,44,7z"/>
+                                </g>
+                            </svg>
+                            <span>01/27/21</span>
+                            <div class="blog__add-info">Created</div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="blog">
+                    <a class="blog__title">Phasellus eget augue est fring</a>
+                    <div class="blog__info-container">
+                        <div class="blog__info author">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <path d="M50,43v2.2c0,2.6-2.2,4.8-4.8,4.8H6.8C4.2,50,2,47.8,2,45.2V43c0-5.8,6.8-9.4,13.2-12.2c0.2-0.1,0.4-0.2,0.6-0.3c0.5-0.2,1-0.2,1.5,0.1c2.6,1.7,5.5,2.6,8.6,2.6s6.1-1,8.6-2.6c0.5-0.3,1-0.3,1.5-0.1c0.2,0.1,0.4,0.2,0.6,0.3C43.2,33.6,50,37.1,50,43z M26,2c6.6,0,11.9,5.9,11.9,13.2S32.6,28.4,26,28.4s-11.9-5.9-11.9-13.2S19.4,2,26,2z"/>
+                            </svg>
+                            <span>John Smith</span>
+                            <div class="blog__add-info">Author</div>
+                        </div>
+                        <div class="blog__info date">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <g>
+                                    <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20zM19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M29,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M29,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M39,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M39,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z"/>
+                                    <path d="M44,7h-4h-1V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2H19V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2h-1H8c-2.2,0-4,1.8-4,4v2.5C4,14.3,4.7,15,5.5,15h41c0.8,0,1.5-0.7,1.5-1.5V11C48,8.8,46.2,7,44,7z"/>
+                                </g>
+                            </svg>
+                            <span>01/27/21</span>
+                            <div class="blog__add-info">Created</div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="blog">
+                    <a class="blog__title">Phasellus eget augue est fring</a>
+                    <div class="blog__info-container">
+                        <div class="blog__info author">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <path d="M50,43v2.2c0,2.6-2.2,4.8-4.8,4.8H6.8C4.2,50,2,47.8,2,45.2V43c0-5.8,6.8-9.4,13.2-12.2c0.2-0.1,0.4-0.2,0.6-0.3c0.5-0.2,1-0.2,1.5,0.1c2.6,1.7,5.5,2.6,8.6,2.6s6.1-1,8.6-2.6c0.5-0.3,1-0.3,1.5-0.1c0.2,0.1,0.4,0.2,0.6,0.3C43.2,33.6,50,37.1,50,43z M26,2c6.6,0,11.9,5.9,11.9,13.2S32.6,28.4,26,28.4s-11.9-5.9-11.9-13.2S19.4,2,26,2z"/>
+                            </svg>
+                            <span>John Smith</span>
+                            <div class="blog__add-info">Author</div>
+                        </div>
+                        <div class="blog__info date">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                                <g>
+                                    <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20zM19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M29,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M29,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z M39,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M39,32c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V32z"/>
+                                    <path d="M44,7h-4h-1V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2H19V5c0-1.6-1.3-3-3-3l0,0c-1.6,0-3,1.3-3,3v2h-1H8c-2.2,0-4,1.8-4,4v2.5C4,14.3,4.7,15,5.5,15h41c0.8,0,1.5-0.7,1.5-1.5V11C48,8.8,46.2,7,44,7z"/>
+                                </g>
+                            </svg>
+                            <span>01/27/21</span>
+                            <div class="blog__add-info">Created</div>
+                        </div>                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section clients background-transparent">
+    <div class="section__container">
+
+        <h2 class="section__header">Our Awesome Clients</h2>
+        <div class="section__separator"></div>
+        <p class="section__text">
+            Sed hendrerit quam sed ante euismod posu. Mauris ut elementum ante. 
+            <br>
+            Vestibuel suscipit convallis purus mattis magna sapien, euismod convallis sagittis quis euismod posu.
+        </p>
+
+        <div class="section__carousel"
+            appSwipeDetection
+                (swipeStart)="clientsSwipeStart()"
+                (swipeMove)="clientsSwipeMove($event)"
+                (swipeEnd)="clientsSwipeEnd()"
+        >
+
+            <button class="section__slide left"
+                (click)="clientsPageDecrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M34.2,47.7L13.4,27.2c-0.6-0.6-0.6-1.6,0-2.2L34.2,4.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2L22.1,25c-0.6,0.6-0.6,1.6,0,2.2l16.3,16.1c0.6,0.6,0.6,1.6,0,2.2l-2.2,2.2C35.7,48.2,34.8,48.2,34.2,47.7z"/>
+                    </g>
+                </svg>
+            </button>
+            <button class="section__slide right"
+                (click)="clientsPageIncrease()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+                    <g>
+                        <path d="M17.9,4.4l20.7,20.5c0.6,0.6,0.6,1.6,0,2.2L17.9,47.6c-0.6,0.6-1.6,0.6-2.2,0l-2.2-2.2c-0.6-0.6-0.6-1.6,0-2.2l16.3-16.1c0.6-0.6,0.6-1.6,0-2.2L13.6,8.8c-0.6-0.6-0.6-1.6,0-2.2l2.2-2.2C16.4,3.9,17.3,3.9,17.9,4.4z"/>
+                    </g>
+                </svg>
+            </button>
+
+            <div class="section__carousel-container clients"
+                appCarousel
+                    [carouselSetPage]="clientsPage"
+                    (carouselCurrentPage)="clientsRecievePage($event)"
+                    [carouselSwipeDistance]="clientsSwipeDistance"
+                    [carouselSwipeActive]="clientsSwipeActive"
+            >
+
+                <img class="client" src="../../../assets/clients/client1.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client2.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client3.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client4.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client5.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client6.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client7.png" draggable="false">
+                <img class="client" src="../../../assets/clients/client8.png" draggable="false">
+
+            </div>
+
+        </div>
+    </div>
+</section>
