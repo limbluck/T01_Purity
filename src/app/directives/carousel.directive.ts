@@ -4,7 +4,9 @@ import { Observable, fromEvent } from "rxjs";
 
 /**
  * @classdesc
- *   Directive for creating responsive carousels.
+ *   Directive for creating responsive carousels in flex containers.
+ * 
+ * @requires gap property setted in container.
  * 
  * @constructor
  *   Inject necessary services
@@ -21,12 +23,12 @@ import { Observable, fromEvent } from "rxjs";
  *   Set the swipe status to handle swipe end.
  * 
  * @usageNotes
- * To use this carousel directive, apply the 'appCarousel' attribute to the HTML element
- * that should act as the carousel container. 
+ *   To use this carousel directive, apply the 'appCarousel' attribute to the HTML element that should act as the carousel container.
+ *   Container must be a flex with a gap proprety!
  * 
  * @example
  * ```html
- * <div
+ * <div style="display: flex; gap: 0"
  *   appCarousel
  *   [carouselSetPage]="currentPage"
  *   (carouselCurrentPage)="currentPageRespond"
@@ -42,10 +44,10 @@ import { Observable, fromEvent } from "rxjs";
 })
 export class CarouselDirective {
 
-  private readonly animationBuilder: AnimationBuilder = inject(AnimationBuilder);
-  private readonly renderer: Renderer2 = inject(Renderer2);
   constructor(
-    private readonly host: ElementRef
+    private readonly host: ElementRef,
+    private readonly animationBuilder: AnimationBuilder,
+    private readonly renderer: Renderer2
   ) {}
 
   private elementChildrenWidth!: number;
@@ -62,10 +64,10 @@ export class CarouselDirective {
     for (let i = 0; i < this.host.nativeElement.children.length; i++) {
       this.renderer.setStyle(this.host.nativeElement.children[i], 'display', 'none')
     }
-    this.renderer.setStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'display', 'block')
+    this.renderer.removeStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'display');
     this.renderer.setStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'order', -1)
     for (let i = 0; i < this.elementChildrenFit + 1; i++) {
-      this.renderer.setStyle(this.host.nativeElement.children[i], 'display', 'block')
+      this.renderer.removeStyle(this.host.nativeElement.children[i], 'display')
     }
 
     // Observer to get and set width properties on window resize
@@ -78,10 +80,10 @@ export class CarouselDirective {
       for (let i = 0; i < this.host.nativeElement.children.length; i++) {
         this.renderer.setStyle(this.host.nativeElement.children[i], 'display', 'none')
       }
-      this.renderer.setStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'display', 'block')
+      this.renderer.removeStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'display');
       this.renderer.setStyle(this.host.nativeElement.children[this.host.nativeElement.children.length - 1], 'order', -1)
       for (let i = 0; i < this.elementChildrenFit + 1; i++) {
-        this.renderer.setStyle(this.host.nativeElement.children[i], 'display', 'block')
+        this.renderer.removeStyle(this.host.nativeElement.children[i], 'display')
       }
     });
   }
@@ -147,7 +149,7 @@ export class CarouselDirective {
             ? currentPage - 2
             : host.host.nativeElement.children.length - 1; // Loop in children array
           for (let i = 0; i < host.elementChildrenFit + 2; i++) {
-            host.renderer.setStyle(host.host.nativeElement.children[j], 'display', 'block');
+            host.renderer.removeStyle(host.host.nativeElement.children[j], 'display');
             host.renderer.setStyle(host.host.nativeElement.children[j], 'order', i);
             if (++j >= host.host.nativeElement.children.length) {j = 0} // Loop in children array
           }
@@ -200,7 +202,7 @@ export class CarouselDirective {
           ? this.currentPage - 2
           : this.host.nativeElement.children.length - 1; // Loop in children array
         for (let i = 0; i < this.elementChildrenFit + 2; i++) {
-          this.renderer.setStyle(this.host.nativeElement.children[j], 'display', 'block');
+          this.renderer.removeStyle(this.host.nativeElement.children[j], 'display');
           this.renderer.setStyle(this.host.nativeElement.children[j], 'order', i);
           if (++j >= this.host.nativeElement.children.length) {j = 0} // Loop in children array
         }
@@ -229,7 +231,7 @@ export class CarouselDirective {
           ? this.currentPage - 2
           : this.host.nativeElement.children.length - 1;
         for (let i = 0; i < this.elementChildrenFit + 2; i++) {
-          this.renderer.setStyle(this.host.nativeElement.children[j], 'display', 'block');
+          this.renderer.removeStyle(this.host.nativeElement.children[j], 'display');
           this.renderer.setStyle(this.host.nativeElement.children[j], 'order', i);
           if (++j >= this.host.nativeElement.children.length) {j = 0}
         }
@@ -254,13 +256,16 @@ export class CarouselDirective {
   @Input()
   set carouselSwipeActive(swipeActive: boolean) {
     if (!swipeActive) {
-      
+
       // If scrolled more than a half of a child element (--left)
       if ((- (this.swipeDistance % (this.elementChildrenWidth + this.elementGap)) / (this.elementChildrenWidth + this.elementGap)) < -0.5) {
 
         // Loop page numbers
         this.currentPage--;
         if (this.currentPage < 1) {this.currentPage = this.host.nativeElement.children.length}
+
+        // Send current page to parent component
+        this.carouselCurrentPage.emit(this.currentPage);
   
         // Change page
           // Hide all children
@@ -273,14 +278,11 @@ export class CarouselDirective {
             ? this.currentPage - 2
             : this.host.nativeElement.children.length - 1;
           for (let i = 0; i < this.elementChildrenFit + 2; i++) {
-            this.renderer.setStyle(this.host.nativeElement.children[j], 'display', 'block');
+            this.renderer.removeStyle(this.host.nativeElement.children[j], 'display');
             this.renderer.setStyle(this.host.nativeElement.children[j], 'order', i);
             if (++j >= this.host.nativeElement.children.length) {j = 0}
           }
   
-        // Send current page to parent component
-        this.carouselCurrentPage.emit(this.currentPage);
-        
         // Animate transition to --left page
           const animation: AnimationPlayer = this.animationBuilder
           .build([
@@ -301,12 +303,17 @@ export class CarouselDirective {
           })
           animation.play();
 
+        
+
       // If scrolled more than a half of a child element (++right)
       } else if ((- (this.swipeDistance % (this.elementChildrenWidth + this.elementGap)) / (this.elementChildrenWidth + this.elementGap)) > 0.5) {
         
         // Loop page numbers
         this.currentPage++;
         if (this.currentPage > this.host.nativeElement.children.length) {this.currentPage = 1}
+
+        // Send current page to parent component
+        this.carouselCurrentPage.emit(this.currentPage);
 
         // Change page
           // Hide all children
@@ -319,13 +326,10 @@ export class CarouselDirective {
             ? this.currentPage - 2
             : this.host.nativeElement.children.length - 1;
           for (let i = 0; i < this.elementChildrenFit + 2; i++) {
-            this.renderer.setStyle(this.host.nativeElement.children[j], 'display', 'block');
+            this.renderer.removeStyle(this.host.nativeElement.children[j], 'display');
             this.renderer.setStyle(this.host.nativeElement.children[j], 'order', i);
             if (++j >= this.host.nativeElement.children.length) {j = 0}
           }
-
-        // Send current page to parent component
-        this.carouselCurrentPage.emit(this.currentPage);
 
         // Animate transition to ++right page
         const animation: AnimationPlayer = this.animationBuilder
