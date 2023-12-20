@@ -37,9 +37,9 @@ import { Directive, Input, Output, Renderer2, inject, EventEmitter, ElementRef} 
 })
 export class DropdownDirective {
   
-  private readonly renderer: Renderer2 = inject(Renderer2);
   constructor(
-    private host: ElementRef
+    private readonly host: ElementRef,
+    private readonly renderer: Renderer2
   ) {}
 
   private listeners: Array<() => void> = [()=>{}];
