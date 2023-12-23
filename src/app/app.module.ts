@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './pages/page-components/header/header.component';
 import { SidebarComponent } from './pages/page-components/sidebar/sidebar.component';
+import { FooterComponent } from './pages/page-components/footer/footer.component';
 
 import { HomeComponent } from './pages/home/home.component';
 
@@ -21,6 +22,7 @@ import { CarouselDirective } from './directives/carousel.directive';
 
     HeaderComponent,
     SidebarComponent,
+    FooterComponent,
 
     HomeComponent,
 
