@@ -1,15 +1,12 @@
 <nav class="sidebar">
 
     <div class="logo">
-        <img class="logo__image" src="../../../assets/logo.png" draggable="false">
+        <img src="../../../assets/logo.png" draggable="false">
     </div>
 
     <div class="site-navigation">
-        <a class="site-navigation__link" draggable="false"
-            routerLink="/home"
-            routerLinkActive="active"
-        >
-            <svg class="site-navigation__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <a routerLink="/home" routerLinkActive="active" draggable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <g>
                     <path d="M49,27h-5v22c0,0.6-0.4,1-1,1H33c-0.6,0-1-0.4-1-1V32H20v17c0,0.6-0.4,1-1,1H9c-0.6,0-1-0.4-1-1V27H3
                         c-0.4,0-0.8-0.2-0.9-0.6C1.9,26,2,25.6,2.3,25.3l23-23c0.4-0.4,1.1-0.4,1.4,0l23,23c0.3,0.3,0.3,0.7,0.2,1.1S49.4,27,49,27z"/>
@@ -17,10 +14,8 @@
             </svg>
             Home
         </a>
-        <a class="site-navigation__link" draggable="false"
-            routerLinkActive="active"
-        >
-            <svg class="site-navigation__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <a routerLinkActive="active" draggable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <g>
                     <path d="M11.5,17h-8C2.7,17,2,17.7,2,18.5V44c0,2.2,1.8,4,4,4h5.5c0.8,0,1.5-0.7,1.5-1.5v-28
                         C13,17.7,12.3,17,11.5,17z"/>
@@ -31,10 +26,8 @@
             </svg>
             Dashboard
         </a>
-        <a class="site-navigation__link" draggable="false"
-            routerLinkActive="active"
-        >
-            <svg class="site-navigation__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <a routerLinkActive="active" draggable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <g>
                     <path d="M46.5,20h-41C4.7,20,4,20.7,4,21.5V46c0,2.2,1.8,4,4,4h36c2.2,0,4-1.8,4-4V21.5C48,20.7,47.3,20,46.5,20z
                         M19,42c0,0.6-0.4,1-1,1h-4c-0.6,0-1-0.4-1-1v-4c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1V42z M19,32c0,0.6-0.4,1-1,1h-4
@@ -48,10 +41,8 @@
             </svg>
             Calendar
         </a>
-        <a class="site-navigation__link" draggable="false"
-            routerLinkActive="active"
-        >
-            <svg class="site-navigation__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <a routerLinkActive="active" draggable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
             <g>
                 <g>
                     <path d="M44.4,19H33.2c-2.6,0-4.2-1.6-4.2-4.2V3.6C29,2.7,28.3,2,27.4,2H10.8C8.2,2,6,4.2,6,6.8v38.4c0,2.6,2.2,4.8,4.8,4.8h30.4c2.6,0,4.8-2.2,4.8-4.8V20.6C46,19.7,45.3,19,44.4,19z"/>
@@ -63,10 +54,8 @@
             </svg>
             My files
         </a>
-        <a class="site-navigation__link" draggable="false"
-            routerLinkActive="active"
-        >
-            <svg class="site-navigation__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <a routerLinkActive="active" draggable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <path d="M21.18,36.34c.91,0,1.66-1.07,1.66-2.4s-.74-2.4-1.66-2.4-1.66,1.07-1.66,2.4,.74,2.4,1.66,2.4Z" />
                 <path d="M31.34,36.34c.91,0,1.66-1.07,1.66-2.4s-.74-2.4-1.66-2.4-1.66,1.07-1.66,2.4,.74,2.4,1.66,2.4Z" />
                 <path d="M34.2,41.16c-.8-.7-2.76-2.18-5.42-2.82-.43,.66-1.31,1.11-2.33,1.11s-1.96-.48-2.37-1.17c-1.63,.35-3.37,1.13-5.17,2.53-.45,.35-.75,.9-.74,1.49,0,3.91,4.05,.75,8.09,.81,4.14,.07,8.48,2.79,8.48-.75,.03-.47-.19-.91-.53-1.21h-.01Z" />
@@ -81,10 +70,10 @@
     <div class="sidebar__separator small-screen"></div>
 
     <div class="info-navigation">
-        <a class="info-navigation__link" routerLink="/home" draggable="false">Home</a>
-        <a class="info-navigation__link" draggable="false">Courses</a>
-        <a class="info-navigation__link" draggable="false">Blogs</a>
-        <a class="info-navigation__link" draggable="false">About</a>
+        <a routerLink="/home" draggable="false">Home</a>
+        <a draggable="false">Courses</a>
+        <a draggable="false">Blogs</a>
+        <a draggable="false">About</a>
     </div>
 
 </nav>

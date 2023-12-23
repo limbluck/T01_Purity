@@ -26,17 +26,15 @@
 
 .logo {
     
-    & {
-        margin: 0 0 clamp(0.625em, 1.5vw, 1.688em);
-        height: clamp(3.5em, calc(20vw * 0.3), 4.5em);
+    margin: 0 0 clamp(0.625em, 1.5vw, 1.688em);
+    height: clamp(3.5em, calc(20vw * 0.3), 4.5em);
 
-        display: flex;
-        align-items: center;
+    display: flex;
+    align-items: center;
 
-        cursor: pointer;
-    }
+    cursor: pointer;
 
-    &__image {
+    >img {
         width: 10.312em;
         height: 2.812em;
         padding: 0 1.5em;
@@ -44,14 +42,13 @@
 }
 
 .site-navigation {
-    & {
-        display: flex;
-        flex-shrink: 0;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
+    
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    overflow-x: hidden;
 
-    &__link {
+    >a {
         margin: 0 0.571em;
         box-sizing: border-box;
         min-width: 8.75em;
@@ -90,14 +87,14 @@
             &:hover {
                 color: #000000;
 
-                .navigation__link-icon {
+                >svg {
                     fill: #000000;
                 }
             }
         }
     }
 
-    &__link-icon {
+    svg {
         margin-right: 0.8em;
         width: 1em;
         height: 1em;
@@ -110,13 +107,11 @@
 
 .info-navigation {
     
-    & {
-        display: none;
+    display: none;
 
-        flex-direction: column;
-    }
+    flex-direction: column;
 
-    &__link {
+    >a {
         box-sizing: border-box;
         height: 3.042em;
         padding: 0 1.446em;
