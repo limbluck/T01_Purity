@@ -320,6 +320,7 @@
     &__cards {
         & {
             margin-top: 3em;
+            padding: 0 clamp(0.5em, 3vw, 1.875em);
 
             display: flex;
             gap: clamp(0.5em, 3vw, 1.875em);
@@ -332,7 +333,7 @@
                 flex: 1;
 
                 box-sizing: border-box;
-                min-width: 14.937em;
+                min-width: 14.625em;
                 padding: 1.5em;
 
                 &>*:not(:last-child) {
@@ -989,7 +990,7 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 698px) {
     .section {
         &__slide {
             display: none;
@@ -1041,7 +1042,7 @@
     .section {
         &__courses {
             .course {
-                min-width: 240px;
+                min-width: 234px;
             }
         }
     }
