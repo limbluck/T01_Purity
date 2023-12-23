@@ -11,10 +11,12 @@
         ></app-sidebar>
     </div>
 
-    <div class="header-placeholder"></div>
+    <div class="header-spaceholder"></div>
 
     <div class="wrapper"
         [class.sidebar-active]="showSidebar"
     >
         <router-outlet></router-outlet>
+
+        <app-footer></app-footer>
     </div>
